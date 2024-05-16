@@ -4,7 +4,6 @@
 //
 //  Created by 이재영 on 2024/05/16.
 //
-
 import Foundation
 
 var misterLee = Person(name: "misterLee" ,birthYears: 1990, job: "barista", money: 20_000)
@@ -17,12 +16,6 @@ var yagombucks = CoffeeShop(sales: 0,
                                         .coldbrew: 5000],
                             pickUpTable: [:],
                             barista: misterLee)
-
-missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice) : 11])
-missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice) : 11,
-                                     .latte(temp: .ice): 3,
-                                     .vanillaLatte(temp: .ice): 1])
-
 
 class Person {
     let birthYears: Int
@@ -39,50 +32,72 @@ class Person {
     
     func orderCoffee(at coffeeShop: CoffeeShop ,_ orders: [Coffee: Int]) {
         var coffeeShop = coffeeShop
-        coffeeShop.takeOrder(orders, customer: self)
+        
+        let totalPrice = coffeeShop.takeOrder(orders, customer: self)
+        
+        guard totalPrice != -1 else {return}
+        
+        guard pay(charge: totalPrice) else {return}
+        
+        coffeeShop.payed(charge: totalPrice)
+        
+        coffeeShop.makeCoffee(orders: orders, customer: self)
     }
     
     func pay(charge: Int) -> Bool {
-        guard money > charge else {return false}
+        guard money > charge else {
+            print("잔액이 \(charge-money)원만큼 부족합니다.")
+            return false
+        }
         self.money -= charge
         return true
     }
 }
 
-struct CoffeeShop {
+class CoffeeShop {
     var sales: Int
     let menuBoard: [Coffee: Int]
     var pickUpTable: [Coffee: Int]
     var barista: Person
     
-    mutating func takeOrder(_ orders: [Coffee: Int], customer: Person) {
+    init(sales: Int, menuBoard: [Coffee : Int], pickUpTable: [Coffee : Int], barista: Person) {
+        self.sales = sales
+        self.menuBoard = menuBoard
+        self.pickUpTable = pickUpTable
+        self.barista = barista
+    }
+    
+    func takeOrder(_ orders: [Coffee: Int], customer: Person) -> Int {
         guard Set(menuBoard.keys).isSuperset(of: Set(orders.keys)) else {
             let haveNoMenus = Set(orders.keys)
-                .filter( {!Set(menuBoard.keys).contains($0)})
-                .map( {$0.convertKor()})
+                .filter {!Set(menuBoard.keys).contains($0)}
+                .map {$0.convertKor()}
+            
             print("죄송합니다. \(haveNoMenus.joined(separator: ", "))는 준비되지 않은 메뉴입니다.")
-            return
+            return -1
         }
-        let totalPrice: Int = orders.map( {menuBoard[$0.key]! * $0.value}).reduce(0, +)
-        print("총 \(totalPrice)원 결제 도와드리겠습니다.")
         
-        guard customer.pay(charge: totalPrice) else {
-            print("죄송합니다. 결제에 실패했습니다.")
-            return
-        }
-        self.sales += totalPrice
-        self.makeCoffee(orders)
-        print(customer.name + "님 픽업 테이블에 커피가 준비되었습니다.")
+        let totalPrice: Int = orders.map {menuBoard[$0.key]! * $0.value}.reduce(0, +)
+        print("총 \(totalPrice)원 결제 도와드리겠습니다.")
+        return totalPrice
+    }
+    
+    func makeCoffee(orders: [Coffee:Int], customer: Person) {
+        let orderStr = orders.map {$0.key.convertKor() + " " + String($0.value) + "잔"}
+        self.pickUpTable = orders.reduce(into: pickUpTable) {
+            result, order in
+            result[order.key] = (result[order.key] ?? 0) + order.value}
+            
+        print(customer.name +
+              " 님이 주문하신 " +
+              orderStr.joined(separator: ", ") +
+              " (이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
         return
     }
     
-    mutating func makeCoffee(_ orders: [Coffee: Int]) {
-        self.pickUpTable = orders.reduce(into: pickUpTable) {
-            result, order in
-            result[order.key] = (result[order.key] ?? 0) + order.value
-        }
+    func payed(charge: Int) {
+        self.sales += charge
     }
-    
 }
 
 enum Coffee: Hashable {
@@ -90,11 +105,6 @@ enum Coffee: Hashable {
     case latte(temp: CoffeeTemperature)
     case coldbrew
     case vanillaLatte(temp: CoffeeTemperature)
-    
-    enum CoffeeTemperature {
-        case ice
-        case hot
-    }
     
     func convertKor() -> String {
         switch self {
@@ -111,9 +121,13 @@ enum Coffee: Hashable {
         case .vanillaLatte(temp: .hot):
             return "따뜻한 바닐라 라떼"
         case .vanillaLatte(temp: .ice):
-            return "아이스 바닐라 라뗴"
+            return "아이스 바닐라 라떼"
         }
     }
+    
+    enum CoffeeTemperature {
+        case ice
+        case hot
+    }
 }
-
 
