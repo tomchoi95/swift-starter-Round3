@@ -17,6 +17,11 @@ var yagombucks = CoffeeShop(sales: 0,
                             pickUpTable: [:],
                             barista: misterLee)
 
+print("missKim 의 잔액: ", missKim.money,"yagombucks 의 매출액: ", yagombucks.sales)
+missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice): 5])
+print("missKim 의 잔액: ", missKim.money,"yagombucks 의 매출액: ", yagombucks.sales)
+
+
 class Person {
     let birthYears: Int
     var job: String
@@ -130,4 +135,3 @@ enum Coffee: Hashable {
         case hot
     }
 }
-
