@@ -7,8 +7,8 @@
 
 import Foundation
 
-var misterLee = Person(birthYears: 1990, job: "barista", money: 20_000)
-var missKim = Person(birthYears: 1999, job: "student", money: 50_000)
+var misterLee = Person(name: "misterLee" ,birthYears: 1990, job: "barista", money: 20_000)
+var missKim = Person(name: "missKim" ,birthYears: 1999, job: "student", money: 50_000)
 
 var yagombucks = CoffeeShop(sales: 0,
                             menuBoard: [.americano(temp: .ice): 4500,
@@ -17,17 +17,21 @@ var yagombucks = CoffeeShop(sales: 0,
                                         .coldbrew: 5000],
                             pickUpTable: [:],
                             barista: misterLee)
-missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice) : 11])
-missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice) : 11])
 
-missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice) : 11, .latte(temp: .ice): 3, .vanillaLatte(temp: .ice): 1])
+missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice) : 11])
+missKim.orderCoffee(at: yagombucks, [.americano(temp: .ice) : 11,
+                                     .latte(temp: .ice): 3,
+                                     .vanillaLatte(temp: .ice): 1])
+
 
 class Person {
     let birthYears: Int
     var job: String
     var money: Int
+    var name: String
     
-    init(birthYears: Int, job: String, money: Int) {
+    init(name: String, birthYears: Int, job: String, money: Int) {
+        self.name = name
         self.birthYears = birthYears
         self.job = job
         self.money = money
@@ -59,24 +63,26 @@ struct CoffeeShop {
             print("죄송합니다. \(haveNoMenus.joined(separator: ", "))는 준비되지 않은 메뉴입니다.")
             return
         }
+        let totalPrice: Int = orders.map( {menuBoard[$0.key]! * $0.value}).reduce(0, +)
+        print("총 \(totalPrice)원 결제 도와드리겠습니다.")
         
-        let sales: Int = orders.map( {menuBoard[$0.key]! * $0.value}).reduce(0, +)
-        print("총 \(sales)원 결제 도와드리겠습니다.")
-        
-        guard customer.pay(charge: sales) else {
+        guard customer.pay(charge: totalPrice) else {
             print("죄송합니다. 결제에 실패했습니다.")
             return
         }
-        self.sales += sales
-                
+        self.sales += totalPrice
+        self.makeCoffee(orders)
+        print(customer.name + "님 픽업 테이블에 커피가 준비되었습니다.")
+        return
+    }
+    
+    mutating func makeCoffee(_ orders: [Coffee: Int]) {
         self.pickUpTable = orders.reduce(into: pickUpTable) {
             result, order in
             result[order.key] = (result[order.key] ?? 0) + order.value
         }
-        
-        print("픽업 테이블에 커피가 준비되었습니다.")
-        return
     }
+    
 }
 
 enum Coffee: Hashable {
