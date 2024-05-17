@@ -17,10 +17,12 @@ let yagombucks = CoffeeShop(sales: 0,
                             pickUpTable: [:],
                             barista: misterLee)
 
-//print("missKim 의 잔액: ", missKim.money,"yagombucks 의 매출액: ", yagombucks.sales, "픽업대: ", yagombucks.pickUpTable)
-missKim.orderCoffee(at: yagombucks, [.americano(temperature: .ice): 5])
-//print("missKim 의 잔액: ", missKim.money,"yagombucks 의 매출액: ", yagombucks.sales, "픽업대: ", yagombucks.pickUpTable)
 
+let order = missKim.orderCoffee(at: yagombucks, [.americano(temperature: .ice): 5])
+
+yagombucks.makeCoffee(orders: [.americano(temperature: .ice): 5],
+                      payedCheck: yagombucks.payed(charge: order.charge),
+                      customer: order.customer)
 
 class Person {
     let birthYears: Int
@@ -35,16 +37,12 @@ class Person {
         self.money = money
     }
     
-    func orderCoffee(at coffeeShop: CoffeeShop ,_ orders: [Coffee: Int]) {
-        guard let totalPrice = coffeeShop.takeOrder(orders, customer: self) else { return }
+    func orderCoffee(at coffeeShop: CoffeeShop ,_ orders: [Coffee: Int]) -> (charge: Int?,customer: Person) {
+        guard let totalPrice = coffeeShop.takeOrder(orders, customer: self) else { return (nil, self) }
         
-        guard enoughMoney(charge: totalPrice) else { return }
+        guard enoughMoney(charge: totalPrice) else { return (nil, self) }
         
-        pay(charge: totalPrice)
-        
-        coffeeShop.payed(charge: totalPrice)
-        
-        coffeeShop.makeCoffee(orders: orders, customer: self)
+        return (pay(charge: totalPrice), self)
     }
     
     func enoughMoney(charge: Int) -> Bool {
@@ -55,8 +53,9 @@ class Person {
         return true
     }
     
-    func pay(charge: Int) {
+    func pay(charge: Int) -> Int {
         self.money -= charge
+        return charge
     }
 }
 
@@ -91,7 +90,9 @@ class CoffeeShop {
         return totalPrice
     }
     
-    func makeCoffee(orders: [Coffee:Int], customer: Person) {
+    func makeCoffee(orders: [Coffee:Int], payedCheck: Bool, customer: Person) {
+        guard payedCheck else { return }
+        
         let orderStr = orders.map { $0.key.convertKorean() + " " + String($0.value) + "잔" }
         
         self.pickUpTable = orders.reduce(into: pickUpTable) { result, order in
@@ -105,8 +106,10 @@ class CoffeeShop {
         return
     }
     
-    func payed(charge: Int) {
+    func payed(charge: Int?) -> Bool {
+        guard let charge = charge else {return false}
         self.sales += charge
+        return true
     }
 }
 
