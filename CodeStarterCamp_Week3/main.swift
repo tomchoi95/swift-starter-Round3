@@ -12,7 +12,7 @@ class Person {
     let name: String
     let job: String
     var money: Int
-    var receiveCoffees = [Coffee]()
+    var coffeeOnHand = [Coffee]()
     
     init(name: String, job: String, money: Int) {
         self.name = name
@@ -21,15 +21,31 @@ class Person {
     }
     
     func orderCoffee(with coffeeList: [Coffee], at coffeeShop: CoffeeShop) {
+        var order = [Coffee]()
         for coffee in coffeeList {
-            if let price = coffeeShop.menu[coffee] {
+            guard let price = coffeeShop.menu[coffee] else { return }
+            if money - price > 0 {
                 money -= price
+                order.append(coffee)
+            } else {
+                print("잔액이 부족합니다.")
+                return
             }
+        }
+        if !order.isEmpty {
+            coffeeShop.takeOrder(coffeeList: order, orderer: self)
         }
     }
     
+    func receiveCoffee(order: [Coffee]) {
+        print("감사합니다~^^")
+        coffeeOnHand = order
+        drinkCoffee()
+    }
+    
     func drinkCoffee() {
-        receiveCoffees = []
+        print("홀짝")
+        coffeeOnHand.removeAll()
     }
 }
 
@@ -54,19 +70,25 @@ class CoffeeShop {
             }
             pickUpTable.append(coffee)
         }
-        print(pickUpTable)
+        makeCoffee(for: orderer)
     }
     
-    func serveCoffee(orderer: Person) {
-        orderer.receiveCoffees = pickUpTable
-        pickUpTable = []
+    func makeCoffee(for orderer: Person) {
+        let completedOrders = pickUpTable.map { String($0.rawValue) }.joined(separator: ", ")
+        print("주문하신 \(completedOrders) 나왔습니다~")
+        orderer.receiveCoffee(order: pickUpTable)
+        pickUpTable.removeAll()
     }
 }
 
-enum Coffee {
-    case espresso
-    case americano
-    case caffeLatte
-    case vanillaLatte
+enum Coffee: String {
+    case espresso, americano, caffeLatte, vanillaLatte
 }
+
+let misterLee = Person(name: "misterLee", job: "barista", money: 100_000)
+let missKim = Person(name: "missKim", job: "student", money: 10_000)
+let yagombucks = CoffeeShop(name: "yagombucks", sales: 500_000, barista: misterLee, menu: [.espresso: 4_000, .americano: 4_500, .caffeLatte: 5_000, .vanillaLatte: 5_500])
+
+missKim.orderCoffee(with: [.espresso, .caffeLatte], at: yagombucks)
+
 
