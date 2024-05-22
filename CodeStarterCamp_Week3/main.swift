@@ -27,7 +27,7 @@ class Person {
             return
         }
         if price > self.money {
-            print("\(name)의 잔액이 부족합니다.")
+            print("\(name)의 잔액이 \(price - self.money)원 부족합니다.")
             return
         }
         print("\(name)(이)가 \(cafe.shopName)에서 \(coffee.rawValue)를 주문했습니다.")
@@ -56,7 +56,10 @@ class CoffeeShop {
     }
     
     func getOrder(_ customer: Person, order coffee: Coffee) {
-        guard let price = self.menu[coffee] else { return }
+        guard let price = self.menu[coffee] else {
+            print("\(coffee.rawValue)는 \(self.shopName)에 없는 메뉴입니다.")
+            return
+        }
         sales += price
         
         print("\(shopName)의 바리스타 \(barista.name)가 \(coffee.rawValue)를 만드는 중입니다.")
