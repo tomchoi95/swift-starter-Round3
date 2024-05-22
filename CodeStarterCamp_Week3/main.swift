@@ -75,7 +75,7 @@ class CoffeeShop {
     }
     
     func makeCoffee(for orderer: Person) {
-        let completedOrders = pickUpTable.map { String($0.rawValue) }.joined(separator: ", ")
+        let completedOrders = pickUpTable.map { $0.rawValue }.joined(separator: ", ")
         print("주문하신 \(completedOrders) 나왔습니다~")
         orderer.receiveCoffee(order: pickUpTable)
         pickUpTable.removeAll()
