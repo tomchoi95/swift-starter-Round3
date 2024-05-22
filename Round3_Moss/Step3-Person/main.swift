@@ -6,24 +6,6 @@
 //
 import Foundation
 
-let misterLee = Person(name: "misterLee" ,birthYears: 1990, job: "barista", money: 20_000)
-let missKim = Person(name: "missKim" ,birthYears: 1999, job: "student", money: 50_000)
-
-let yagombucks = CoffeeShop(sales: 0,
-                            menuBoard: [.americano(temperature: .ice): 4500,
-                                        .americano(temperature: .hot): 4800,
-                                        .latte(temperature: .hot): 4800,
-                                        .coldbrew: 5000],
-                            pickUpTable: [:],
-                            barista: misterLee)
-
-
-let order = missKim.orderCoffee(at: yagombucks, [.americano(temperature: .ice): 5])
-
-yagombucks.makeCoffee(orders: [.americano(temperature: .ice): 5],
-                      payedCheck: yagombucks.payed(charge: order.charge),
-                      customer: order.customer)
-
 class Person {
     let birthYears: Int
     var job: String
@@ -37,12 +19,8 @@ class Person {
         self.money = money
     }
     
-    func orderCoffee(at coffeeShop: CoffeeShop ,_ orders: [Coffee: Int]) -> (charge: Int?,customer: Person) {
-        guard let totalPrice = coffeeShop.takeOrder(orders, customer: self) else { return (nil, self) }
-        
-        guard enoughMoney(charge: totalPrice) else { return (nil, self) }
-        
-        return (pay(charge: totalPrice), self)
+    func orderCoffee(_ orders: [Coffee: Int], of coffeeShop: CoffeeShop) {
+        coffeeShop.takeOrder(orders, by: self)
     }
     
     func enoughMoney(charge: Int) -> Bool {
@@ -53,7 +31,9 @@ class Person {
         return true
     }
     
-    func pay(charge: Int) -> Int {
+    func pay(charge: Int) -> Int? {
+        guard self.enoughMoney(charge: charge) else { return nil }
+        
         self.money -= charge
         return charge
     }
@@ -72,43 +52,43 @@ class CoffeeShop {
         self.barista = barista
     }
     
-    func takeOrder(_ orders: [Coffee: Int], customer: Person) -> Int? {
+    func takeOrder(_ orders: [Coffee: Int],by customer: Person) {
         guard Set(menuBoard.keys).isSuperset(of: Set(orders.keys)) else {
             let haveNoMenus = Set(orders.keys)
                 .filter { !Set(menuBoard.keys).contains($0) }
                 .map { $0.convertKorean() }
             
             print("죄송합니다. \(haveNoMenus.joined(separator: ", "))는 준비되지 않은 메뉴입니다.")
-            return nil
+            return
         }
         
-        let totalPrice: Int = orders.map{
-            (menuBoard[$0.key] ?? 0) * $0.value
-        } .reduce(0, +)
-        
+        let totalPrice: Int = orders.map{ (menuBoard[$0.key] ?? 0) * $0.value }.reduce(0, +)
         print("총 \(totalPrice)원 결제 도와드리겠습니다.")
-        return totalPrice
+        
+        guard payed(charge: customer.pay(charge: totalPrice)) else { return }
+        print("결제되셨습니다.\n커피가 준비되면 성함 불러드리겠습니다.")
+        
+        self.make(orders: orders, for: customer.name)
     }
     
-    func makeCoffee(orders: [Coffee:Int], payedCheck: Bool, customer: Person) {
-        guard payedCheck else { return }
-        
+    func make(orders: [Coffee:Int], for customer: String) {
         let orderStr = orders.map { $0.key.convertKorean() + " " + String($0.value) + "잔" }
         
         self.pickUpTable = orders.reduce(into: pickUpTable) { result, order in
             result[order.key] = (result[order.key] ?? 0) + order.value
         }
  
-        print(customer.name +
+        print(customer +
               " 님이 주문하신 " +
               orderStr.joined(separator: ", ") +
-              " (이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
+              "(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
         return
     }
     
     func payed(charge: Int?) -> Bool {
         guard let charge = charge else {return false}
         self.sales += charge
+
         return true
     }
 }
@@ -143,3 +123,16 @@ enum Coffee: Hashable {
         case hot
     }
 }
+
+let misterLee = Person(name: "misterLee" ,birthYears: 1990, job: "barista", money: 20_000)
+let missKim = Person(name: "missKim" ,birthYears: 1999, job: "student", money: 50_000)
+
+let yagombucks = CoffeeShop(sales: 0,
+                            menuBoard: [.americano(temperature: .ice): 4500,
+                                        .americano(temperature: .hot): 4800,
+                                        .latte(temperature: .hot): 4800,
+                                        .coldbrew: 5000],
+                            pickUpTable: [:],
+                            barista: misterLee)
+
+missKim.orderCoffee([.americano(temperature: .hot): 3], of: yagombucks)
