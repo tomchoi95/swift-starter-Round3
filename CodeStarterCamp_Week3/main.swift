@@ -24,16 +24,17 @@ class Person {
         var order = [Coffee]()
         for coffee in coffeeList {
             guard let price = coffeeShop.menu[coffee] else { return }
-            if money - price > 0 {
+            if money - price >= 0 {
                 money -= price
                 order.append(coffee)
             } else {
                 print("잔액이 부족합니다.")
-                return
             }
         }
         if !order.isEmpty {
             coffeeShop.takeOrder(coffeeList: order, orderer: self)
+        } else {
+            return
         }
     }
     
