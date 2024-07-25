@@ -23,6 +23,28 @@ class CoffeeShop {
         }
     }
     
+    func todaysCalculate(_ of: CoffeeShop) {
+        var calculateCoffee: String = String()
+        for calculate in of.pickUpTable {
+            calculateCoffee.insert(contentsOf: "\(calculate), ", at: calculateCoffee.endIndex)
+        }
+        calculateCoffee.removeLast()
+        calculateCoffee.removeLast()
+      
+        print(
+            """
+            
+            \(String(repeating: "&", count: 65))
+            <오늘의 주문 목록>
+            \(calculateCoffee)
+            
+            오늘의 수익: \(of.sales) 원
+            \(String(repeating: "&", count: 65))
+            """
+        )
+    }
+    // 커피숍의 하루 매출을 확인하는 함수
+    
     init(name: String, barista: String, sales: Int) {
         self.name = name
         self.barista = barista

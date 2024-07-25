@@ -6,4 +6,5 @@ var yagombucks: CoffeeShop = CoffeeShop(name: "yagombucks", barista: misterLee.n
 
 missKim.buyCoffee(from: yagombucks, to: .Americano)
 missKim.buyAllMenu(to: yagombucks)
- 
+
+yagombucks.todaysCalculate(yagombucks)
