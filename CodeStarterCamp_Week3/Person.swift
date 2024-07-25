@@ -8,6 +8,17 @@ class Person {
         }
     }
     
+    func buyCoffee(from: CoffeeShop, to: Coffee) {
+        let cafeName = from.name
+        if money >= to.discription {
+            print("\(name)(이)가 \(cafeName)에서 \(to)(을)를 주문합니다.")
+            money -= to.discription
+ 
+        } else {
+            print("잔액이 부족하여 주문을 할 수 없습니다.(현재 잔액: \(money)원, 부족한 잔액: \(to.discription - money)원)")
+        }
+    }
+    
     init(name: String, age: Int, gender: String, money: Int) {
         self.name = name
         self.age = age
