@@ -21,6 +21,14 @@ class Person {
         }
     }
     
+    func buyAllMenu(to CoffeShop: CoffeeShop) {
+        for coffee in  CoffeShop.menu {
+            missKim.buyCoffee(from: CoffeShop, to: coffee)
+            print(" ")
+        }
+    }
+    // 지정된 커피숍의 모든 메뉴를 구매하는 함수
+    
     init(name: String, age: Int, gender: String, money: Int) {
         self.name = name
         self.age = age
