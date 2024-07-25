@@ -5,3 +5,5 @@ var missKim: Person = Person(name: "msKim", age: 25, gender: "female", money: 10
 var yagombucks: CoffeeShop = CoffeeShop(name: "yagombucks", barista: misterLee.name, sales: 0)
 
 missKim.buyCoffee(from: yagombucks, to: .Americano)
+missKim.buyAllMenu(to: yagombucks)
+ 
