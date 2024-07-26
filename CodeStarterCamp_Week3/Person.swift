@@ -1,11 +1,17 @@
 class Person {
     var name: String
     var age: Int
-    var gender: String
+    var gender: Gender
     var money: Int {
         didSet {
             print("\(name)의 잔액: \(oldValue)원 -> \(money)원")
         }
+    }
+    init(name: String, age: Int, gender: Gender, money: Int) {
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.money = money
     }
     
     func buyCoffee(from: CoffeeShop, to: Coffee) {
@@ -29,12 +35,10 @@ class Person {
     }
     // 지정된 커피숍의 모든 메뉴를 구매하는 함수
     
-    init(name: String, age: Int, gender: String, money: Int) {
-        self.name = name
-        self.age = age
-        self.gender = gender
-        self.money = money
+    enum Gender {
+        case male, female, other
     }
+    // Person타입이 가지는 성별의 종류
 }
 // 사람의 이름, 나이, 성별, 재산 설정
 

@@ -9,6 +9,12 @@ class CoffeeShop {
     var menu: [Coffee] = [.Americano, .Cafelatte, .Espresso, .Frappe, .Macchiato]
     var pickUpTable: [Coffee] = []
     
+    init(name: String, barista: String, sales: Int) {
+        self.name = name
+        self.barista = barista
+        self.sales = sales
+    }
+    
     func makeCoffee(make: Coffee, customer: String) {
         print("\(barista)(이)가 \(customer)(이)가 주문한 \(make)(을)를 만듭니다.")
         sales += make.discription
@@ -44,10 +50,4 @@ class CoffeeShop {
         )
     }
     // 커피숍의 하루 매출을 확인하는 함수
-    
-    init(name: String, barista: String, sales: Int) {
-        self.name = name
-        self.barista = barista
-        self.sales = sales
-    }
 }
