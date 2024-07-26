@@ -26,9 +26,9 @@ class Person {
         }
     }
     
-    func buyAllMenu(to CoffeShop: CoffeeShop) {
+    func buyAllMenu(who person: Person,to CoffeShop: CoffeeShop) {
         for coffee in  CoffeShop.menu {
-            missKim.buyCoffee(from: CoffeShop, to: coffee)
+            person.buyCoffee(from: CoffeShop, to: coffee)
             print(" ")
         }
     }
