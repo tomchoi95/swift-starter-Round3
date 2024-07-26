@@ -20,6 +20,7 @@ class CoffeeShop {
         sales += make.discription
         
         pickUpTable.append(make)
+        
         if let order = pickUpTable.last {
             print("현재 주문목록: \(order)")
         }
@@ -31,6 +32,7 @@ class CoffeeShop {
     
     func todaysCalculate(_ of: CoffeeShop) {
         var calculateCoffee: String = String()
+        
         for calculate in of.pickUpTable {
             calculateCoffee.insert(contentsOf: "\(calculate), ", at: calculateCoffee.endIndex)
         }

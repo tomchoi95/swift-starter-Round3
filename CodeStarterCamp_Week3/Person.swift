@@ -14,16 +14,15 @@ class Person {
         self.money = money
     }
     
-    func buyCoffee(from: CoffeeShop, to: Coffee) {
-        let cafeName = from.name
-        if money >= to.discription {
-            print("\(name)(이)가 \(cafeName)에서 \(to)(을)를 주문합니다.")
-            money -= to.discription
- 
-            from.makeCoffee(make: to, customer: name)
+    func buyCoffee(from cafe: CoffeeShop, to menu: Coffee) {
+        let cafeName = cafe.name
+        if money >= menu.discription {
+            print("\(name)(이)가 \(cafeName)에서 \(menu)(을)를 주문합니다.")
+            money -= menu.discription
+            cafe.makeCoffee(make: menu, customer: name)
             // 잔액이 충분한 경우 coffeeShop에 order를 전달
         } else {
-            print("잔액이 부족하여 주문을 할 수 없습니다.(현재 잔액: \(money)원, 부족한 잔액: \(to.discription - money)원)")
+            print("잔액이 부족하여 주문을 할 수 없습니다.(현재 잔액: \(money)원, 부족한 잔액: \(menu.discription - money)원)")
         }
     }
     
