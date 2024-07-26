@@ -30,10 +30,10 @@ class CoffeeShop {
         }
     }
     
-    func todaysCalculate(_ of: CoffeeShop) {
+    func todaysCalculate(to coffeSales: CoffeeShop) {
         var calculateCoffee: String = String()
         
-        for calculate in of.pickUpTable {
+        for calculate in coffeSales.pickUpTable {
             calculateCoffee.insert(contentsOf: "\(calculate), ", at: calculateCoffee.endIndex)
         }
         calculateCoffee.removeLast()
@@ -46,7 +46,7 @@ class CoffeeShop {
             <오늘의 주문 목록>
             \(calculateCoffee)
             
-            오늘의 수익: \(of.sales) 원
+            오늘의 수익: \(coffeSales.sales) 원
             \(String(repeating: "&", count: 65))
             """
         )
