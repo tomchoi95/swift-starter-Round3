@@ -11,6 +11,7 @@
 		AA37B64F2C4001C30097C48E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B64E2C4001C30097C48E /* main.swift */; };
 		AA37B67A2C5241E70097C48E /* CoffeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B6792C5241E70097C48E /* CoffeShop.swift */; };
 		AA37B67C2C52431E0097C48E /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B67B2C52431E0097C48E /* Coffee.swift */; };
+		AA37B67E2C538CC20097C48E /* MagicNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B67D2C538CC20097C48E /* MagicNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		AA37B64E2C4001C30097C48E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AA37B6792C5241E70097C48E /* CoffeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeShop.swift; sourceTree = "<group>"; };
 		AA37B67B2C52431E0097C48E /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
+		AA37B67D2C538CC20097C48E /* MagicNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				34811DD4274B93EB00A1E994 /* Person.swift */,
 				AA37B6792C5241E70097C48E /* CoffeShop.swift */,
 				AA37B67B2C52431E0097C48E /* Coffee.swift */,
+				AA37B67D2C538CC20097C48E /* MagicNumber.swift */,
 				AA37B64E2C4001C30097C48E /* main.swift */,
 			);
 			path = CodeStarterCamp_Week3;
@@ -131,6 +134,7 @@
 			files = (
 				34811DD5274B93EB00A1E994 /* Person.swift in Sources */,
 				AA37B67A2C5241E70097C48E /* CoffeShop.swift in Sources */,
+				AA37B67E2C538CC20097C48E /* MagicNumber.swift in Sources */,
 				AA37B64F2C4001C30097C48E /* main.swift in Sources */,
 				AA37B67C2C52431E0097C48E /* Coffee.swift in Sources */,
 			);

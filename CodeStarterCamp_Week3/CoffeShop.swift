@@ -27,6 +27,7 @@ class CoffeeShop {
         
         if pickUpTable.count != 0 {
             print("주문하신 \(make) 나왔습니다!")
+            print(MagicNumber.blankPage.content)
         }
     }
     
