@@ -32,20 +32,16 @@ class CoffeeShop {
     }
     
     func todaysCalculate(to coffeSales: CoffeeShop) {
-        var calculateCoffee: String = String()
-        
-        for calculate in coffeSales.pickUpTable {
-            calculateCoffee.insert(contentsOf: "\(calculate), ", at: calculateCoffee.endIndex)
+        let calculateCoffee = coffeSales.pickUpTable.map { (coffeeMenu: Coffee) -> String in
+            return "\(coffeeMenu)"
         }
-        calculateCoffee.removeLast()
-        calculateCoffee.removeLast()
-      
+
         print(
             """
             
             \(String(repeating: "&", count: 65))
             <오늘의 주문 목록>
-            \(calculateCoffee)
+            \(calculateCoffee.joined(separator: ", "))
             
             오늘의 수익: \(coffeSales.sales) 원
             \(String(repeating: "&", count: 65))
