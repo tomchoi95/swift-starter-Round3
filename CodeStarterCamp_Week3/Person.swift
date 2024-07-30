@@ -7,6 +7,7 @@ class Person {
             print("\(name)의 잔액: \(oldValue)원 -> \(money)원")
         }
     }
+    
     init(name: String, age: Int, gender: Gender, money: Int) {
         self.name = name
         self.age = age
@@ -24,7 +25,7 @@ class Person {
             // 잔액이 충분한 경우 coffeeShop에 order를 전달
         } else {
             print("잔액이 부족하여 주문을 할 수 없습니다.(현재 잔액: \(money)원, 부족한 잔액: \(menu.discription - money)원)")
-            print(MagicNumber.blankPage.content)
+            print(MagicNumber.blankPage)
         }
     }
     

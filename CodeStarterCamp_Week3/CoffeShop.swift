@@ -27,7 +27,7 @@ class CoffeeShop {
         
         if pickUpTable.count != 0 {
             print("주문하신 \(coffee) 나왔습니다!")
-            print(MagicNumber.blankPage.content)
+            print(MagicNumber.blankPage)
         }
     }
     
@@ -38,7 +38,6 @@ class CoffeeShop {
 
         print(
             """
-            
             \(String(repeating: "&", count: 65))
             <오늘의 주문 목록>
             \(calculateCoffee.joined(separator: ", "))
