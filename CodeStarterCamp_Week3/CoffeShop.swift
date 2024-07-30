@@ -15,8 +15,8 @@ class CoffeeShop {
         self.sales = sales
     }
     
-    func makeCoffee(make coffee: Coffee, customer: String) {
-        print("\(barista)(이)가 \(customer)(이)가 주문한 \(coffee)(을)를 만듭니다.")
+    func make(_ coffee: Coffee, from name: String) {
+        print("\(barista)(이)가 \(name)(이)가 주문한 \(coffee)(을)를 만듭니다.")
         sales += coffee.discription
         
         pickUpTable.append(coffee)
@@ -24,7 +24,7 @@ class CoffeeShop {
         if pickUpTable.count != 0 {
             if let order = pickUpTable.last {
                 print("현재 주문목록: \(order)")
-                print("\(customer) 님이 주문하신 \(coffee)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
+                print("\(name) 님이 주문하신 \(coffee)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
                 print(MagicNumber.blankPage.rawValue)
             }
         }

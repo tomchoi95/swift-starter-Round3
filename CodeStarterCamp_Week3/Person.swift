@@ -21,7 +21,7 @@ class Person {
         if money >= coffee.discription {
             print("\(name)(이)가 \(cafeName)에서 \(coffee)(을)를 주문합니다.")
             money -= coffee.discription
-            coffeeShop.makeCoffee(make: coffee, customer: name)
+            coffeeShop.make(coffee, from: name)
             // 잔액이 충분한 경우 coffeeShop에 order를 전달
         } else {
             print("잔액이 부족하여 주문을 할 수 없습니다.(현재 잔액: \(money)원, 부족한 잔액: \(coffee.discription - money)원)")
