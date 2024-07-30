@@ -21,13 +21,12 @@ class CoffeeShop {
         
         pickUpTable.append(coffee)
         
-        if let order = pickUpTable.last {
-            print("현재 주문목록: \(order)")
-        }
-        
         if pickUpTable.count != 0 {
-            print("주문하신 \(coffee) 나왔습니다!")
-            print(MagicNumber.blankPage)
+            if let order = pickUpTable.last {
+                print("현재 주문목록: \(order)")
+                print("\(customer) 님이 주문하신 \(coffee)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
+                print(MagicNumber.blankPage.rawValue)
+            }
         }
     }
     
@@ -35,7 +34,7 @@ class CoffeeShop {
         let calculateCoffee = coffeSales.pickUpTable.map { (coffeeMenu: Coffee) -> String in
             return "\(coffeeMenu)"
         }
-
+        
         print(
             """
             \(String(repeating: "&", count: 65))
@@ -49,3 +48,4 @@ class CoffeeShop {
     }
     // 커피숍의 하루 매출을 확인하는 함수
 }
+
