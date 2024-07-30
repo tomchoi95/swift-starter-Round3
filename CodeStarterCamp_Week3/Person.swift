@@ -36,6 +36,14 @@ class Person {
     }
     // 지정된 커피숍의 모든 메뉴를 구매하는 함수
     
+    func work(who name: String, time hour: UInt) {
+        if hour > 0 {
+            print("\(name)(이/가) \(hour)시간동안 일을 합니다.")
+            money += 9860 * Int(hour)
+            print(MagicNumber.blankPage.rawValue)
+        }
+    }
+    
     enum Gender {
         case male, female, other
     }
