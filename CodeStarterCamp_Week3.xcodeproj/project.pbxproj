@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34811DD5274B93EB00A1E994 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34811DD4274B93EB00A1E994 /* main.swift */; };
+		34811DD5274B93EB00A1E994 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34811DD4274B93EB00A1E994 /* Person.swift */; };
+		AA37B64F2C4001C30097C48E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B64E2C4001C30097C48E /* main.swift */; };
+		AA37B67A2C5241E70097C48E /* CoffeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B6792C5241E70097C48E /* CoffeShop.swift */; };
+		AA37B67C2C52431E0097C48E /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B67B2C52431E0097C48E /* Coffee.swift */; };
+		AA37B67E2C538CC20097C48E /* MagicNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA37B67D2C538CC20097C48E /* MagicNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +28,11 @@
 
 /* Begin PBXFileReference section */
 		34811DD1274B93EB00A1E994 /* CodeStarterCamp_Week3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CodeStarterCamp_Week3; sourceTree = BUILT_PRODUCTS_DIR; };
-		34811DD4274B93EB00A1E994 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		34811DD4274B93EB00A1E994 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		AA37B64E2C4001C30097C48E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AA37B6792C5241E70097C48E /* CoffeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeShop.swift; sourceTree = "<group>"; };
+		AA37B67B2C52431E0097C48E /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
+		AA37B67D2C538CC20097C48E /* MagicNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +65,11 @@
 		34811DD3274B93EB00A1E994 /* CodeStarterCamp_Week3 */ = {
 			isa = PBXGroup;
 			children = (
-				34811DD4274B93EB00A1E994 /* main.swift */,
+				34811DD4274B93EB00A1E994 /* Person.swift */,
+				AA37B6792C5241E70097C48E /* CoffeShop.swift */,
+				AA37B67B2C52431E0097C48E /* Coffee.swift */,
+				AA37B67D2C538CC20097C48E /* MagicNumber.swift */,
+				AA37B64E2C4001C30097C48E /* main.swift */,
 			);
 			path = CodeStarterCamp_Week3;
 			sourceTree = "<group>";
@@ -88,8 +100,9 @@
 		34811DC9274B93EB00A1E994 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					34811DD0274B93EB00A1E994 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -119,7 +132,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34811DD5274B93EB00A1E994 /* main.swift in Sources */,
+				34811DD5274B93EB00A1E994 /* Person.swift in Sources */,
+				AA37B67A2C5241E70097C48E /* CoffeShop.swift in Sources */,
+				AA37B67E2C538CC20097C48E /* MagicNumber.swift in Sources */,
+				AA37B64F2C4001C30097C48E /* main.swift in Sources */,
+				AA37B67C2C52431E0097C48E /* Coffee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,9 +177,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -221,9 +240,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -245,6 +266,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -254,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
