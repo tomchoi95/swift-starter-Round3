@@ -22,11 +22,13 @@ class CoffeeShop {
         pickUpTable.append(coffee)
         
         if pickUpTable.count != 0 {
-            if let order = pickUpTable.last {
-                print("현재 주문목록: \(order)")
-                print("\(name) 님이 주문하신 \(coffee)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
-                print(MagicNumber.blankPage.rawValue)
+            guard let order = pickUpTable.last else {
+                return print("아직 주문이 들어오지 않았습니다.")
             }
+            print("현재 주문목록: \(order)")
+            print("\(name) 님이 주문하신 \(coffee)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
+            print(MagicNumber.blankPage.rawValue)
+            
         }
     }
     
