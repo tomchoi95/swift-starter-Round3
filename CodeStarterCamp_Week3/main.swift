@@ -10,4 +10,4 @@ missKim.order(.Americano, of: yagombucks, by: missKim.name)
 missKim.order(.Americano, of: yagombucks, by: missKim.name)
 missKim.buyAllMenu(who: missKim, to: yagombucks)
 
-yagombucks.todaysCalculate(to: yagombucks)
+yagombucks.todaysCalculateSales(to: yagombucks)

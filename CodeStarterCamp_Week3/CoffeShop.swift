@@ -31,8 +31,8 @@ class CoffeeShop {
     }
     
     
-    func todaysCalculate(to coffeSales: CoffeeShop) {
-        let calculateCoffee = coffeSales.pickUpTable.map { (coffeeMenu: Coffee) -> String in
+    func todaysCalculateSales(to coffeeShop: CoffeeShop) {
+        let calculateCoffee = coffeeShop.pickUpTable.map { (coffeeMenu: Coffee) -> String in
             return "\(coffeeMenu)"
         }
         
@@ -42,7 +42,7 @@ class CoffeeShop {
             <오늘의 주문 목록>
             \(calculateCoffee.joined(separator: ", "))
             
-            오늘의 수익: \(coffeSales.sales) 원
+            오늘의 수익: \(coffeeShop.sales) 원
             \(String(repeating: "&", count: 65))
             """
         )
