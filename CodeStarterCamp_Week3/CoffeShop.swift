@@ -15,38 +15,38 @@ class CoffeeShop {
         self.sales = sales
     }
     
-    func makeCoffee(make coffee: Coffee, customer: String) {
-        print("\(barista)(이)가 \(customer)(이)가 주문한 \(coffee)(을)를 만듭니다.")
+    func make(_ coffee: Coffee, from name: String) {
+        print("\(barista)(이)가 \(name)(이)가 주문한 \(coffee)(을)를 만듭니다.")
         sales += coffee.discription
         
         pickUpTable.append(coffee)
         
-        if let order = pickUpTable.last {
-            print("현재 주문목록: \(order)")
-        }
         
-        if pickUpTable.count != 0 {
-            print("주문하신 \(coffee) 나왔습니다!")
-            print(MagicNumber.blankPage.content)
+        guard let order = pickUpTable.last else {
+            return print("아직 주문이 들어오지 않았습니다.")
         }
+        print("현재 주문목록: \(order)")
+        print("\(name) 님이 주문하신 \(coffee)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
+        print(MagicNumber.blankPage.rawValue)
     }
     
-    func todaysCalculate(to coffeSales: CoffeeShop) {
-        let calculateCoffee = coffeSales.pickUpTable.map { (coffeeMenu: Coffee) -> String in
+    
+    func todaysCalculateSales(to coffeeShop: CoffeeShop) {
+        let calculateCoffee = coffeeShop.pickUpTable.map { (coffeeMenu: Coffee) -> String in
             return "\(coffeeMenu)"
         }
-
+        
         print(
             """
-            
             \(String(repeating: "&", count: 65))
             <오늘의 주문 목록>
             \(calculateCoffee.joined(separator: ", "))
             
-            오늘의 수익: \(coffeSales.sales) 원
+            오늘의 수익: \(coffeeShop.sales) 원
             \(String(repeating: "&", count: 65))
             """
         )
     }
     // 커피숍의 하루 매출을 확인하는 함수
 }
+
