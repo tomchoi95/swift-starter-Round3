@@ -9,20 +9,20 @@ import Foundation
 
 // CoffeeShop 타입 정의
 class CoffeeShop {
-    var name: String                // 카페 이름
-    var revenue: Double             // 매출액
-    var menu: [Coffee: Double]      // 메뉴판(커피종류key, 가격value)
-    var pickUpTable: [Coffee]       // 주문한 커피 저장
-    var barista: Person?            // 커피숍의 바리스타
+    var name: String
+    var revenue: Int
+    var menu: [Coffee: Int]
+    var pickUpTable: [Coffee]
+    var barista: Person?            
     
-    init(name: String, menu: [Coffee: Double]) {
+    init(name: String, menu: [Coffee: Int]) {
         self.name = name
         self.revenue = 0
         self.menu = menu
         self.pickUpTable = []
     }
     
-    func makeCoffe(coffee: Coffee) {
+    func make(coffee: Coffee) {
         pickUpTable.append(coffee)
         print("\(coffee.rawValue)가 나왔습니다. pickup 하세요.")
     }
