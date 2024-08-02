@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		34811DD5274B93EB00A1E994 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34811DD4274B93EB00A1E994 /* main.swift */; };
+		C0D1B4FA2C59A28100B6793E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1B4F92C59A28100B6793E /* Person.swift */; };
+		C0D1B4FC2C59A2A200B6793E /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1B4FB2C59A2A200B6793E /* CoffeeShop.swift */; };
+		C0D1B4FE2C59A2D200B6793E /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1B4FD2C59A2D200B6793E /* Coffee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		34811DD1274B93EB00A1E994 /* CodeStarterCamp_Week3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CodeStarterCamp_Week3; sourceTree = BUILT_PRODUCTS_DIR; };
 		34811DD4274B93EB00A1E994 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C0D1B4F92C59A28100B6793E /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		C0D1B4FB2C59A2A200B6793E /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
+		C0D1B4FD2C59A2D200B6793E /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +63,36 @@
 		34811DD3274B93EB00A1E994 /* CodeStarterCamp_Week3 */ = {
 			isa = PBXGroup;
 			children = (
+				C0D1B4F62C59A1E300B6793E /* Step1 */,
 				34811DD4274B93EB00A1E994 /* main.swift */,
 			);
 			path = CodeStarterCamp_Week3;
+			sourceTree = "<group>";
+		};
+		C0D1B4F62C59A1E300B6793E /* Step1 */ = {
+			isa = PBXGroup;
+			children = (
+				C0D1B4F82C59A20E00B6793E /* Enum */,
+				C0D1B4F72C59A1F100B6793E /* Class */,
+			);
+			path = Step1;
+			sourceTree = "<group>";
+		};
+		C0D1B4F72C59A1F100B6793E /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				C0D1B4F92C59A28100B6793E /* Person.swift */,
+				C0D1B4FB2C59A2A200B6793E /* CoffeeShop.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		C0D1B4F82C59A20E00B6793E /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				C0D1B4FD2C59A2D200B6793E /* Coffee.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0D1B4FC2C59A2A200B6793E /* CoffeeShop.swift in Sources */,
+				C0D1B4FA2C59A28100B6793E /* Person.swift in Sources */,
 				34811DD5274B93EB00A1E994 /* main.swift in Sources */,
+				C0D1B4FE2C59A2D200B6793E /* Coffee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
