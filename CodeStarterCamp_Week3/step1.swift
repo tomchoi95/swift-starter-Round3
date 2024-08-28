@@ -77,7 +77,7 @@ class CoffeeShop {
     }
 
     func order(items: [Coffee]) {
-        guard let (pickUpTable, revenue): ([Coffee], Int) = checkItemAvailability(items) else {
+        guard let (pickUpTable, revenue): ([Coffee], Int) = makeCoffee(items) else {
             print("주문을 종료합니다.")
             return
         }
@@ -88,7 +88,7 @@ class CoffeeShop {
         printRevenue()
     }
 
-    func checkItemAvailability(_ items: [Coffee]) -> ([Coffee], Int)? {
+    func makeCoffee(_ items: [Coffee]) -> ([Coffee], Int)? {
         var pickUpTable: [Coffee] = []
         var revenue: Int = 0
         for item in items {
