@@ -15,7 +15,7 @@ let yagombucksMenu: [Coffee: Int] = [.iceAmericano: 2000,.hotChoco: 4500]
 var yagombucks: CoffeeShop = CoffeeShop(menu: yagombucksMenu, barista: misterLee)
 
 let orderList: [Coffee] = [.iceAmericano, .hotChoco]
-missKim.buyCoffee(items: orderList, shop: yagombucks)
+missKim.buyCoffee(orderList, shop: yagombucks)
 yagombucks.order(items: orderList)
 
 // let orderList: [Coffee] = [.iceAmericano, .hotChoco, .milkTea]
