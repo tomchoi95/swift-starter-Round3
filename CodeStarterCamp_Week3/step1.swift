@@ -9,7 +9,7 @@ import Foundation
 
 struct Person {
     var name: String
-    var money: Int
+    var money: Int = 0
 
     init(name: String, money: Int) {
         self.name = name
@@ -18,7 +18,6 @@ struct Person {
     
     init(name: String) {
         self.name = name
-        self.money = 0
     }
 
     mutating func buyCoffee(_ coffees: [Coffee], shop: CoffeeShop) {
