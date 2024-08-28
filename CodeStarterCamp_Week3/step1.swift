@@ -25,13 +25,13 @@ struct Person {
             print("\(name)이(가) 구매를 종료합니다.")
             return
         }
-        guard let remainMoney: Int = calculateRemainMoney(totalAmount) else {
+        guard let remainMoney: Int = calculateRemainMoney(with: totalAmount) else {
             print("\(name)의 돈이 부족합니다. 현재 남은 돈은 \(self.money)원 입니다.")
             return
         }
 
         self.money = remainMoney
-        printOrderList(coffees)
+        printOrderList(of: coffees)
     }
 
     func calculateTotalAmount(items: [Coffee], at shop: CoffeeShop) -> Int? {
@@ -47,7 +47,7 @@ struct Person {
         return totalAmount
     }
 
-    func calculateRemainMoney(_ totalAmount: Int) -> Int? {
+    func calculateRemainMoney(with totalAmount: Int) -> Int? {
         let remainMoney: Int = self.money - totalAmount
         if remainMoney >= 0 {
             return remainMoney
@@ -56,7 +56,7 @@ struct Person {
         }
     }
 
-    func printOrderList(_ items: [Coffee]) {
+    func printOrderList(of items: [Coffee]) {
         let orderListJoined: String = items.map{ $0.rawValue }.joined(separator: ", ")
         print("\(name)이(가) \(orderListJoined)을(를) 구매하였습니다. 현재 남은 돈은 \(self.money)원 입니다.")
     }
@@ -74,8 +74,8 @@ class CoffeeShop {
         self.barista = barista
     }
 
-    func order(items: [Coffee]) {
-        guard let (pickUpTable, totalAmount): ([Coffee], Int) = makeCoffee(items) else {
+    func order(coffees: [Coffee]) {
+        guard let (pickUpTable, totalAmount): ([Coffee], Int) = makeOrders(with: coffees) else {
             print("주문을 종료합니다.")
             return
         }
@@ -86,7 +86,7 @@ class CoffeeShop {
         printRevenue()
     }
 
-    func makeCoffee(_ items: [Coffee]) -> ([Coffee], Int)? {
+    func makeOrders(with items: [Coffee]) -> ([Coffee], Int)? {
         var pickUpTable: [Coffee] = []
         var totalAmount: Int = 0
         for item in items {
