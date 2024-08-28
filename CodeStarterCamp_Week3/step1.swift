@@ -66,13 +66,12 @@ class CoffeeShop {
     var revenue: Int
     var menu: [Coffee: Int]
     var barista: Person
-    var pickUpTable: [Coffee]
+    var pickUpTable: [Coffee] = []
 
     init(menu: [Coffee: Int], barista: Person) {
         self.revenue = 0
         self.menu = menu
         self.barista = barista
-        self.pickUpTable = []
     }
 
     func order(items: [Coffee]) {
