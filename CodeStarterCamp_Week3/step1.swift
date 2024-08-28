@@ -25,3 +25,24 @@ struct Person {
         }
     }
 }
+
+class CoffeeShop {
+    var revenue: Int
+    var menu: [String: Int]
+    var pickUpTable: [String]
+    init(menu: [String: Int]) {
+        self.revenue = 0
+        self.menu = menu
+        self.pickUpTable = []
+    }
+    func order(_ items: String...) {
+        for item in items {
+            if self.menu[item] != nil {
+                self.pickUpTable.append(item)
+            } else {
+                print("\(item)은(는) 없는 품목입니다.")
+            }
+        }
+        print("\(self.pickUpTable) 주문 접수되었습니다.")
+    }
+}
