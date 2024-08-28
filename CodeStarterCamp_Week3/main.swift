@@ -8,5 +8,7 @@
 
 import Foundation
 
-print("Hello, World!")
-
+var misterLee: Person = Person(name: "이야곰", money: 10000)
+var missKim: Person = Person(name: "김야곰", money: 20000)
+misterLee.buyCoffee(price: 2000, cups: 3)
+missKim.buyCoffee(price: 2000, cups: 53)
