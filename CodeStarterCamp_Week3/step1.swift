@@ -77,29 +77,29 @@ class CoffeeShop {
     }
 
     func order(items: [Coffee]) {
-        guard let (pickUpTable, revenue): ([Coffee], Int) = makeCoffee(items) else {
+        guard let (pickUpTable, totalAmount): ([Coffee], Int) = makeCoffee(items) else {
             print("주문을 종료합니다.")
             return
         }
 
         self.pickUpTable = pickUpTable
-        self.revenue = revenue
+        self.revenue += totalAmount
         printPickUpTable()
         printRevenue()
     }
 
     func makeCoffee(_ items: [Coffee]) -> ([Coffee], Int)? {
         var pickUpTable: [Coffee] = []
-        var revenue: Int = 0
+        var totalAmount: Int = 0
         for item in items {
             guard let price: Int = self.menu[item] else {
                 print("\(item)은(는) 없는 품목입니다.")
                 return nil
             }
             pickUpTable.append(item)
-            revenue += price
+            totalAmount += price
         }
-        return (pickUpTable, revenue)
+        return (pickUpTable, totalAmount)
     }
 
     func printPickUpTable() {
