@@ -15,6 +15,11 @@ struct Person {
         self.name = name
         self.money = money
     }
+    
+    init(name: String) {
+        self.name = name
+        self.money = 0
+    }
 
     mutating func buyCoffee(items: [Coffee], shop: CoffeeShop) {
         guard let totalAmount: Int = calculateTotalAmount(items, at: shop) else {

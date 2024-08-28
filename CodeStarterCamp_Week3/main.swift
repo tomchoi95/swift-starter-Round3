@@ -8,7 +8,7 @@
 
 import Foundation
 
-var misterLee: Person = Person(name: "이야곰", money: 10000)
+var misterLee: Person = Person(name: "이야곰")
 var missKim: Person = Person(name: "김야곰", money: 20000)
 
 let yagombucksMenu: [Coffee: Int] = [.iceAmericano: 2000,.hotChoco: 4500]
