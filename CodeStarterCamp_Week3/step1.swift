@@ -25,7 +25,7 @@ struct Person {
             print("\(name)이(가) 구매를 종료합니다.")
             return
         }
-        guard let remainMoney: Int = checkBuyAvailability(totalAmount) else {
+        guard let remainMoney: Int = calculateRemainMoney(totalAmount) else {
             print("\(name)의 돈이 부족합니다. 현재 남은 돈은 \(self.money)원 입니다.")
             return
         }
@@ -47,7 +47,7 @@ struct Person {
         return totalAmount
     }
 
-    func checkBuyAvailability(_ totalAmount: Int) -> Int? {
+    func calculateRemainMoney(_ totalAmount: Int) -> Int? {
         let remainMoney: Int = self.money - totalAmount
         if remainMoney >= 0 {
             return remainMoney
