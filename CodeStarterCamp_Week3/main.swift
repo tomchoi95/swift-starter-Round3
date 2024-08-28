@@ -14,5 +14,5 @@ misterLee.buyCoffee(price: 2000, cups: 3)
 missKim.buyCoffee(price: 2000, cups: 53)
 
 let yagombucksMenu: [String: Int] = ["iceAmericano": 2000, "hotChoco": 4500]
-var yagombucks: CoffeeShop = CoffeeShop(menu: yagombucksMenu)
+var yagombucks: CoffeeShop = CoffeeShop(menu: yagombucksMenu, barista: misterLee)
 yagombucks.order("iceAmericano", "iceChoco", "hotChoco")

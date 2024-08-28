@@ -1,12 +1,3 @@
-//
-//  step1.swift
-//  CodeStarterCamp_Week3
-//
-//  Created by 구현 on 8/28/24.
-//
-
-import Foundation
-
 struct Person {
     var name: String
     var money: Int
@@ -16,7 +7,6 @@ struct Person {
     }
     mutating func buyCoffee(price: Int, cups: Int) {
         let remainMoney: Int = self.money - (price * cups)
-
         if remainMoney >= 0 {
             self.money = remainMoney
             print("\(name)이(가) 커피를 구매하였습니다. 현재 남은 돈은 \(self.money)원 입니다.")
@@ -26,13 +16,23 @@ struct Person {
     }
 }
 
+enum Coffee {
+    case iceAmericano
+    case hotAmericano
+    case iceChoco
+    case hotChoco
+    case milkTea
+}
+
 class CoffeeShop {
     var revenue: Int
     var menu: [String: Int]
+    var barista: Person
     var pickUpTable: [String]
-    init(menu: [String: Int]) {
+    init(menu: [String: Int], barista: Person) {
         self.revenue = 0
         self.menu = menu
+        self.barista = barista
         self.pickUpTable = []
     }
     func order(_ items: String...) {
@@ -43,6 +43,6 @@ class CoffeeShop {
                 print("\(item)은(는) 없는 품목입니다.")
             }
         }
-        print("\(self.pickUpTable) 주문 접수되었습니다.")
+        print("\(self.barista.name)(이)가 \(self.pickUpTable) 주문을 접수하였습니다.")
     }
 }
