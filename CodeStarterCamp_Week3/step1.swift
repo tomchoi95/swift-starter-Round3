@@ -18,26 +18,37 @@ struct Person {
 
 struct CoffeeShop {
     var sales: Int = 0
-    var menu = [String: Int]()
-    var pickUpTable: [String] = []
+    var menu = [Coffee: Int]()
+    var pickUpTable: [Coffee] = []
     var barista: Person?
     var customer: Person?
     
-    mutating func getOrder(order: [String]) {
-        var number = order.count - 1
-        
-        for _ in 0...number {
-            var wholePrice = 0
-            if var price = menu.self [order[number]] {
+    mutating func getOrder(orders: [Coffee]) {
+        var wholePrice = 0
+        for order in orders {
+            guard Coffee.allCases.contains(order) else {
+                print("주문하신 메뉴가 없습니다.")
+                return
+            }
+            if var price = menu[order] {
                 wholePrice += price
             }
-        
-        print("총 \(wholePrice)원 입니다.")
         }
+        print("총 \(wholePrice)원 입니다.")
     }
     
-    mutating func makeCoffee(order: [String]) {
-        pickUpTable.self = order
-        print("주문하신 커피 나왔습니다!")
+    mutating func makeCoffee(orders: [Coffee]) {
+        pickUpTable.self = orders.map { (made: Coffee) -> Coffee in return made}
+        print("주문하신 \(pickUpTable) 나왔습니다!")
     }
 }
+
+enum Coffee: String, CaseIterable {
+    case americano = "Americano"
+    case cafeLatte = "Cafe Latte"
+    case vanilaLatte = "Vanila Latte"
+    case cafeMocha = "Cafe Mocha"
+}
+
+var misterLee = Person(name: "misterLee", money: 10000000)
+var missKim = Person(name: "missKim", money: 10000)
