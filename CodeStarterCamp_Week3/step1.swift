@@ -20,6 +20,8 @@ struct CoffeeShop {
     var sales: Int = 0
     var menu = [String: Int]()
     var pickUpTable: [String] = []
+    var barista: Person?
+    var customer: Person?
     
     mutating func getOrder(order: [String]) {
         var number = order.count - 1
