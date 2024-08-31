@@ -11,9 +11,13 @@ class Person {
     var name: String
     var money = 0
     
-    init(name: String, money: Int = 0) {
+    init(name: String, money: Int) {
         self.name = name
         self.money = money
+    }
+    
+    init(name: String) {
+        self.name = name
     }
     
     func buyCoffee(priceCoffee: Int) {
@@ -25,19 +29,22 @@ class Person {
 }
     
 class CoffeeShop {
-    var sales: Int
+    var sales: Int = 0
     var menu = [String: Int]()
-    var pickUpTable: [String]
+    var pickUpTable: [String] = []
     
-    init(sales: Int, menu: [String : Int] = [String: Int](), pickUpTable: [String]) {
+    init(sales: Int, menu: [String : Int]) {
         self.sales = sales
         self.menu = menu
-        self.pickUpTable = pickUpTable
+    }
+    
+    init(menu: [String: Int]) {
+        self.menu = menu
     }
     
     func getOrder(order: String) {
-        if var price = menu[order] {
-            print("주문하신 \(order)는(은) \(price)원 입니다.")
+        if let priceCoffee = menu[order] {
+            print("주문하신 \(order)는(은) \(priceCoffee)원 입니다.")
         } else {
             print("주문하신 메뉴가 없습니다.")
             return }
@@ -45,7 +52,7 @@ class CoffeeShop {
     
     func makeCoffee(brista: Person, customer: Person, order: String) {
         getOrder(order: order)
-        if var priceCoffee = menu[order] {
+        if let priceCoffee = menu[order] {
             customer.buyCoffee(priceCoffee: priceCoffee)
             self.sales += priceCoffee
         }
@@ -59,3 +66,8 @@ enum Coffee: String {
     case cafeLatte = "카페라떼"
     case vanilaLatte = "바닐라라떼"
 }
+
+var yagombucksMenu: [String: Int] = [Coffee.americano.rawValue: 1500,
+                                     Coffee.cafeMocha.rawValue: 4000,
+                                     Coffee.cafeLatte.rawValue: 4000,
+                                     Coffee.vanilaLatte.rawValue: 4500]
