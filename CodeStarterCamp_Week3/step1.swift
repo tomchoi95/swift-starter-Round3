@@ -53,3 +53,9 @@ class CoffeeShop {
     }
 }
 
+enum Coffee: String {
+    case americano = "아메리카노"
+    case cafeMocha = "카페모카"
+    case cafeLatte = "카페라떼"
+    case vanilaLatte = "바닐라라떼"
+}
