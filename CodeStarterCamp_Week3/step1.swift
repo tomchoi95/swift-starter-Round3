@@ -10,20 +10,16 @@ import Foundation
 class Person {
     var name: String
     var money = 0
+    var enoughMoney: Bool = true
     
     init(name: String, money: Int) {
         self.name = name
         self.money = money
     }
-    
-    init(name: String) {
-        self.name = name
-    }
-    
+
     func buyCoffee(priceCoffee: Int) {
         guard money >= priceCoffee else {
-            print("잔액이 부족합니다!")
-            return }
+            return self.enoughMoney = false }
         self.money = money - priceCoffee
     }
 }
@@ -32,31 +28,36 @@ class CoffeeShop {
     var sales: Int = 0
     var menu = [String: Int]()
     var pickUpTable: [String] = []
+    var barista: Person
+    var standBy: String?
     
-    init(sales: Int, menu: [String : Int]) {
-        self.sales = sales
+    init(menu: [String: Int], barista: Person) {
         self.menu = menu
+        self.barista = barista
     }
     
-    init(menu: [String: Int]) {
-        self.menu = menu
-    }
-    
-    func getOrder(order: String) {
+    func getOrder(customer: Person, order: String) {
         if let priceCoffee = menu[order] {
             print("주문하신 \(order)는(은) \(priceCoffee)원 입니다.")
+            customer.buyCoffee(priceCoffee: priceCoffee)
+            if customer.enoughMoney == true {
+                print("\(priceCoffee)원 받았습니다. 완료되면 불러드릴게요.")
+                self.standBy = order
+                self.sales += priceCoffee
+            } else {
+                print("잔액이 부족합니다.")
+            }
         } else {
             print("주문하신 메뉴가 없습니다.")
             return }
     }
     
-    func makeCoffee(brista: Person, customer: Person, order: String) {
-        getOrder(order: order)
-        if let priceCoffee = menu[order] {
-            customer.buyCoffee(priceCoffee: priceCoffee)
-            self.sales += priceCoffee
+    func makeCoffee() {
+        if var done = standBy {
+            pickUpTable.append(done)
+            let bell = pickUpTable.joined(separator: ", ")
+            print("주문하신 \(bell) 나왔습니다!")
         }
-        pickUpTable.append(order)
     }
 }
 
@@ -71,3 +72,8 @@ var yagombucksMenu: [String: Int] = [Coffee.americano.rawValue: 1500,
                                      Coffee.cafeMocha.rawValue: 4000,
                                      Coffee.cafeLatte.rawValue: 4000,
                                      Coffee.vanilaLatte.rawValue: 4500]
+
+var misterLee: Person = Person(name: "이철수", money: 1000)
+var missKim: Person = Person(name: "김미나", money: 10000)
+
+var yagombucks: CoffeeShop = CoffeeShop(menu: yagombucksMenu, barista: misterLee)
