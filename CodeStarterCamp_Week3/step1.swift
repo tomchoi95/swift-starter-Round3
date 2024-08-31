@@ -7,48 +7,49 @@
 
 import Foundation
 
-struct Person {
+class Person {
     var name: String
-    var money: Int = 1000
+    var money = 0
     
-    mutating func buyCoffee(price: Int) {
-        money.self = money.self - price
+    init(name: String, money: Int = 0) {
+        self.name = name
+        self.money = money
+    }
+    
+    func buyCoffee(priceCoffee: Int) {
+        guard money >= priceCoffee else {
+            print("잔액이 부족합니다!")
+            return }
+        self.money = money - priceCoffee
     }
 }
-
-struct CoffeeShop {
-    var sales: Int = 0
-    var menu = [Coffee: Int]()
-    var pickUpTable: [Coffee] = []
-    var barista: Person?
-    var customer: Person?
     
-    mutating func getOrder(orders: [Coffee]) {
-        var wholePrice = 0
-        for order in orders {
-            guard Coffee.allCases.contains(order) else {
-                print("주문하신 메뉴가 없습니다.")
-                return
-            }
-            if var price = menu[order] {
-                wholePrice += price
-            }
+class CoffeeShop {
+    var sales: Int
+    var menu = [String: Int]()
+    var pickUpTable: [String]
+    
+    init(sales: Int, menu: [String : Int] = [String: Int](), pickUpTable: [String]) {
+        self.sales = sales
+        self.menu = menu
+        self.pickUpTable = pickUpTable
+    }
+    
+    func getOrder(order: String) {
+        if var price = menu[order] {
+            print("주문하신 \(order)는(은) \(price)원 입니다.")
+        } else {
+            print("주문하신 메뉴가 없습니다.")
+            return }
+    }
+    
+    func makeCoffee(brista: Person, customer: Person, order: String) {
+        getOrder(order: order)
+        if var priceCoffee = menu[order] {
+            customer.buyCoffee(priceCoffee: priceCoffee)
+            self.sales += priceCoffee
         }
-        print("총 \(wholePrice)원 입니다.")
-    }
-    
-    mutating func makeCoffee(orders: [Coffee]) {
-        pickUpTable.self = orders.map { (made: Coffee) -> Coffee in return made}
-        print("주문하신 \(pickUpTable) 나왔습니다!")
+        pickUpTable.append(order)
     }
 }
 
-enum Coffee: String, CaseIterable {
-    case americano = "Americano"
-    case cafeLatte = "Cafe Latte"
-    case vanilaLatte = "Vanila Latte"
-    case cafeMocha = "Cafe Mocha"
-}
-
-var misterLee = Person(name: "misterLee", money: 10000000)
-var missKim = Person(name: "missKim", money: 10000)
