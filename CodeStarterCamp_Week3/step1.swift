@@ -32,6 +32,7 @@ class CoffeeShop {
     var revenue: Int = 0
     var menu: [Coffee : Int]
     var pickupTable: [Coffee] = []
+    var barista: Person?
     
     init(menu: [Coffee : Int]) {
         self.menu = menu
@@ -47,6 +48,12 @@ class CoffeeShop {
     }
     
     private func makeCoffee(coffee: Coffee) {
+        if let barista = barista {
+            print("\(barista.name)가 \(coffee.rawValue)를 만들고 있습니다.")
+        } else {
+            print("바리스타가 없어서 \(coffee.rawValue)를 만들 수 없습니다.")
+        }
+        
         pickupTable.append(coffee)
         print("\(coffee.rawValue)가 준비되었습니다!")
     }

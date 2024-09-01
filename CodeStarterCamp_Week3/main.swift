@@ -8,4 +8,5 @@
 
 import Foundation
 
+yagombuks.barista = misterLee
 misterLee.buyCoffee(coffeeShop: yagombuks, coffee: .iceamericano)
