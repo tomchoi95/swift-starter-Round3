@@ -8,5 +8,4 @@
 
 import Foundation
 
-print("Hello, World!")
-
+misterLee.buyCoffee(coffeeShop: yagombuks, coffee: .iceamericano)
