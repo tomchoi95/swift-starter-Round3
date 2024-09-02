@@ -8,13 +8,12 @@
 import Foundation
 
 class CoffeeShop {
-    var revenue: Int
+    var revenue: Int = 0
     var menu: [Coffee: Int]
     var barista: Person
     var pickUpTable: [Coffee] = []
 
     init(menu: [Coffee: Int], barista: Person) {
-        self.revenue = 0
         self.menu = menu
         self.barista = barista
     }
