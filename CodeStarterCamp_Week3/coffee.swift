@@ -43,6 +43,7 @@ class CoffeeShop {
             pickUpTable.append(coffee)
             totalAmount += price
         }
+        
         return (pickUpTable, totalAmount)
     }
 

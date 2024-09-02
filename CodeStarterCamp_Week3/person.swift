@@ -45,17 +45,18 @@ struct Person {
             }
             totalAmount += price
         }
+        
         return totalAmount
     }
 
     func calculateRemainMoney(with totalAmount: Int) -> Int? {
         let remainMoney: Int = self.money - totalAmount
         
-        if remainMoney >= 0 {
-            return remainMoney
-        } else {
+        guard remainMoney >= 0 else {
             return nil
         }
+        
+        return remainMoney
     }
 
     func printOrderList(of items: [Coffee]) {
