@@ -31,16 +31,16 @@ class CoffeeShop {
         printRevenue()
     }
 
-    func makeOrders(with items: [Coffee]) -> ([Coffee], Int)? {
+    func makeOrders(with coffees: [Coffee]) -> ([Coffee], Int)? {
         var pickUpTable: [Coffee] = []
         var totalAmount: Int = 0
         
-        for item in items {
-            guard let price: Int = self.menu[item] else {
-                print("\(item)은(는) 없는 품목입니다.")
+        for coffee in coffees {
+            guard let price: Int = self.menu[coffee] else {
+                print("\(coffee)은(는) 없는 품목입니다.")
                 return nil
             }
-            pickUpTable.append(item)
+            pickUpTable.append(coffee)
             totalAmount += price
         }
         return (pickUpTable, totalAmount)
