@@ -27,6 +27,7 @@ class CoffeeShop {
 
         self.pickUpTable = pickUpTable
         self.revenue += totalAmount
+        self.revenue += totalAmount
         printPickUpTable()
         printRevenue()
     }
@@ -34,6 +35,7 @@ class CoffeeShop {
     func makeOrders(with items: [Coffee]) -> ([Coffee], Int)? {
         var pickUpTable: [Coffee] = []
         var totalAmount: Int = 0
+        
         for item in items {
             guard let price: Int = self.menu[item] else {
                 print("\(item)은(는) 없는 품목입니다.")
