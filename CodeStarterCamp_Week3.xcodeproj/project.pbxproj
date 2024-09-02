@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		34811DD5274B93EB00A1E994 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34811DD4274B93EB00A1E994 /* main.swift */; };
-		F871BEE02C7F30EB008B3858 /* step1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871BEDF2C7F30EB008B3858 /* step1.swift */; };
+		F893BA742C85C76A00121497 /* person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F893BA732C85C76A00121497 /* person.swift */; };
+		F893BA762C85CA8400121497 /* coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = F893BA752C85CA8400121497 /* coffee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +27,8 @@
 /* Begin PBXFileReference section */
 		34811DD1274B93EB00A1E994 /* CodeStarterCamp_Week3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CodeStarterCamp_Week3; sourceTree = BUILT_PRODUCTS_DIR; };
 		34811DD4274B93EB00A1E994 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		F871BEDF2C7F30EB008B3858 /* step1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = step1.swift; sourceTree = "<group>"; };
+		F893BA732C85C76A00121497 /* person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = person.swift; sourceTree = "<group>"; };
+		F893BA752C85CA8400121497 /* coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coffee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,8 @@
 			isa = PBXGroup;
 			children = (
 				34811DD4274B93EB00A1E994 /* main.swift */,
-				F871BEDF2C7F30EB008B3858 /* step1.swift */,
+				F893BA732C85C76A00121497 /* person.swift */,
+				F893BA752C85CA8400121497 /* coffee.swift */,
 			);
 			path = CodeStarterCamp_Week3;
 			sourceTree = "<group>";
@@ -123,7 +126,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				34811DD5274B93EB00A1E994 /* main.swift in Sources */,
-				F871BEE02C7F30EB008B3858 /* step1.swift in Sources */,
+				F893BA742C85C76A00121497 /* person.swift in Sources */,
+				F893BA762C85CA8400121497 /* coffee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
