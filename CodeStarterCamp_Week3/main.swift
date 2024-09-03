@@ -8,5 +8,4 @@
 
 import Foundation
 
-yagombuks.barista = misterLee
-misterLee.buyCoffee(coffeeShop: yagombuks, coffee: .iceamericano)
+missKim.order(coffeeShop: yagombuks, coffee: .iceAmericano)
