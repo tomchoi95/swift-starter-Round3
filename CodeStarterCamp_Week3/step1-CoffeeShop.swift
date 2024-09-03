@@ -20,25 +20,26 @@ class CoffeeShop {
         self.barista = barista
     }
     
-    func getOrder(of customer: Person, order: Coffee) {
-        if let priceCoffee = menu[order] {
-            print("주문하신 \(order)는(은) \(priceCoffee)원 입니다.")
-            customer.buyCoffee(priceCoffee: priceCoffee)
-            if customer.enoughMoney == true {
-                customer.number = self.customerNumber
-                print("\(priceCoffee)원 받았습니다. 완료되면 \(customerNumber)번 으로 불러드릴게요.")
-                self.standBy.insert(order.rawValue, at: customerNumber)
-                self.sales += priceCoffee
-                self.customerNumber += 1
+    func getOrder(of customer: Person, order: String) {
+        if let menuKey = Coffee(rawValue: order) {
+            if let price = menu[menuKey] {
+                print("주문하신 \(order)는(은) \(price)원 입니다.")
+                customer.buyCoffee(priceCoffee: price)
+                if customer.enoughMoney == true {
+                    customer.number = self.customerNumber
+                    print("\(price)원 받았습니다. 완료되면 \(customerNumber)번 으로 불러드릴게요.")
+                    self.standBy.insert(order, at: customerNumber)
+                    self.sales += price
+                    self.customerNumber += 1
+                } else {
+                    print("잔액이 부족합니다.")
+                }
             } else {
-                print("잔액이 부족합니다.")
+                print("주문하신 메뉴가 없습니다.")
+                return
             }
-        } else {
-            print("주문하신 메뉴가 없습니다.")
-            return
         }
     }
-    
     func makeCoffee(customerNumber: Int) {
         pickUpTable.insert(standBy[customerNumber], at: customerNumber)
         let bell = pickUpTable.joined()
