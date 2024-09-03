@@ -24,7 +24,7 @@ class CoffeeShop {
         if let menuKey = Coffee(rawValue: order) {
             if let price = menu[menuKey] {
                 print("주문하신 \(order)는(은) \(price)원 입니다.")
-                customer.buyCoffee(priceCoffee: price)
+                customer.buyCoffee(price: price)
                 if customer.enoughMoney == true {
                     customer.number = self.customerNumber
                     print("\(price)원 받았습니다. 완료되면 \(customerNumber)번 으로 불러드릴게요.")

@@ -19,10 +19,11 @@ class Person {
         self.money = money
     }
 
-    func buyCoffee(priceCoffee: Int) {
-        guard money >= priceCoffee else {
-            return self.enoughMoney = false }
-        self.money = money - priceCoffee
+    func buyCoffee(price: Int) {
+        guard money >= price else {
+            return self.enoughMoney = false
+        }
+        self.money -= price
     }
     
     func getCoffee(receive: String) {
