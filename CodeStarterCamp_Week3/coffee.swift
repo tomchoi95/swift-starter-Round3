@@ -18,7 +18,7 @@ class CoffeeShop {
         self.barista = barista
     }
 
-    func order(coffees: [Coffee]) {
+    func order(_ coffees: [Coffee], by buyer: String) {
         guard let (pickUpTable, totalAmount): ([Coffee], Int) = makeOrders(with: coffees) else {
             print("주문을 종료합니다.")
             return
@@ -27,8 +27,8 @@ class CoffeeShop {
         self.pickUpTable = pickUpTable
         self.revenue += totalAmount
         self.revenue += totalAmount
-        printPickUpTable()
-        printRevenue()
+        printPickUpTable(by: buyer)
+         printRevenue()
     }
 
     func makeOrders(with coffees: [Coffee]) -> ([Coffee], Int)? {
@@ -47,9 +47,9 @@ class CoffeeShop {
         return (pickUpTable, totalAmount)
     }
 
-    func printPickUpTable() {
+    func printPickUpTable(by name: String) {
         let pickUpTableJoined: String = self.pickUpTable.map{ $0.rawValue }.joined(separator: ", ")
-        print("바리스타 \(self.barista.name)(이)가 \(pickUpTableJoined) 주문을 접수하였습니다.")
+        print("\(name) 님이 주문하신 \(pickUpTableJoined)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
     }
 
     func printRevenue() {
