@@ -9,25 +9,25 @@ import Foundation
     
 class CoffeeShop {
     var sales: Int = 0
-    var menu = [String: Int]()
+    var menu = [Coffee: Int]()
     var pickUpTable: [String] = []
     var barista: Person
     var standBy: [String] = []
     var customerNumber = 0
     
-    init(menu: [String: Int], barista: Person) {
+    init(menu: [Coffee: Int], barista: Person) {
         self.menu = menu
         self.barista = barista
     }
     
-    func getOrder(customer: Person, order: String) {
+    func getOrder(of customer: Person, order: Coffee) {
         if let priceCoffee = menu[order] {
             print("주문하신 \(order)는(은) \(priceCoffee)원 입니다.")
             customer.buyCoffee(priceCoffee: priceCoffee)
             if customer.enoughMoney == true {
                 customer.number = self.customerNumber
                 print("\(priceCoffee)원 받았습니다. 완료되면 \(customerNumber)번 으로 불러드릴게요.")
-                self.standBy.insert(order, at: customerNumber)
+                self.standBy.insert(order.rawValue, at: customerNumber)
                 self.sales += priceCoffee
                 self.customerNumber += 1
             } else {
@@ -77,8 +77,8 @@ enum Coffee: String {
     }
 }
 
-var yagombucksMenu: [String: Int] = [Coffee.americano.rawValue: 1500,
-                                     Coffee.cafeMocha.rawValue: 4000,
-                                     Coffee.cafeLatte.rawValue: 4000,
-                                     Coffee.vanilaLatte.rawValue: 4500]
+var yagombucksMenu: [Coffee: Int] = [Coffee.americano: 1500,
+                                     Coffee.cafeMocha: 4000,
+                                     Coffee.cafeLatte: 4000,
+                                     Coffee.vanilaLatte: 4500]
 
