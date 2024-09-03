@@ -30,11 +30,9 @@ struct Person {
             return
         }
 
+        shop.order(coffees, by: self)
         self.money = remainMoney
-        
-        shop.order(coffees, by: self.name)
-        
-         printOrderList(of: coffees)
+        printOrderList(of: coffees)
     }
 
     func calculateTotalAmount(items: [Coffee], at shop: CoffeeShop) -> Int? {
