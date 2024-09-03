@@ -42,7 +42,7 @@ class CoffeeShop {
         
         for coffee in coffees {
             guard let price: Int = self.menu[coffee] else {
-                print("\(coffee)은(는) 없는 품목입니다.")
+                print("\(coffee)(은/는) 없는 품목입니다.")
                 return nil
             }
             pickUpTable.append(coffee)
@@ -68,9 +68,9 @@ class CoffeeShop {
 }
 
 enum Coffee: String {
-    case iceAmericano
-    case hotAmericano
-    case iceChoco
-    case hotChoco
-    case milkTea
+    case iceAmericano = "아이스아메리카노"
+    case hotAmericano = "뜨거운아메리카노"
+    case iceChoco = "아이스초코"
+    case hotChoco = "핫초코"
+    case milkTea = "밀크티"
 }

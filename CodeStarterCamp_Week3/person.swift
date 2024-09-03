@@ -47,7 +47,7 @@ struct Person {
         
         for item in items {
             guard let price: Int = menu[item] else {
-                print("\(item.rawValue)은(는) 없는 품목입니다.")
+                print("\(item.rawValue)(은/는) 없는 품목입니다.")
                 return nil
             }
             totalAmount += price
