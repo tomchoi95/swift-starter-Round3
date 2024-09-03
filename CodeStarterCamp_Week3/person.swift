@@ -9,7 +9,11 @@ import Foundation
 
 struct Person {
     var name: String
-    var money: Int = 0
+    var money: Int = 0 {
+        didSet {
+            print("잔액이 \(self.money)원 남았습니다.")
+        }
+    }
     
     init(name: String, money: Int) {
         self.name = name
@@ -29,13 +33,12 @@ struct Person {
         let remainMoney: Int = calculateRemainMoney(with: totalAmount)
         
         guard remainMoney >= 0 else {
-            print("\(self.name)의 잔액이 \(remainMoney)원만큼 부족합니다.")
+            print("\(self.name)의 잔액이 \(-remainMoney)원만큼 부족합니다.")
             return
         }
         
         shop.order(coffees, by: self)
         self.money = remainMoney
-        printOrderList(of: coffees)
     }
     
     func calculateTotalAmount(items: [Coffee], at shop: CoffeeShop) -> Int? {
@@ -55,10 +58,5 @@ struct Person {
     
     func calculateRemainMoney(with totalAmount: Int) -> Int {
         self.money - totalAmount
-    }
-    
-    func printOrderList(of items: [Coffee]) {
-        let orderListJoined: String = items.map{ $0.rawValue }.joined(separator: ", ")
-        print("\(name)이(가) \(orderListJoined)을(를) 구매하였습니다. 현재 남은 돈은 \(self.money)원 입니다.")
     }
 }
