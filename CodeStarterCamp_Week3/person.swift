@@ -22,11 +22,14 @@ struct Person {
     
     mutating func buyCoffee(_ coffees: [Coffee], shop: CoffeeShop) {
         guard let totalAmount: Int = calculateTotalAmount(items: coffees, at: shop) else {
-            print("\(name)이(가) 구매를 종료합니다.")
+            print("가게에 없는 메뉴입니다.")
             return
         }
-        guard let remainMoney: Int = calculateRemainMoney(with: totalAmount) else {
-            print("\(name)의 돈이 부족합니다. 현재 남은 돈은 \(self.money)원 입니다.")
+        
+        let remainMoney: Int = calculateRemainMoney(with: totalAmount)
+        
+        guard remainMoney >= 0 else {
+            print("\(self.name)의 잔액이 \(remainMoney)원만큼 부족합니다.")
             return
         }
         
@@ -50,14 +53,8 @@ struct Person {
         return totalAmount
     }
     
-    func calculateRemainMoney(with totalAmount: Int) -> Int? {
-        let remainMoney: Int = self.money - totalAmount
-        
-        guard remainMoney >= 0 else {
-            return nil
-        }
-        
-        return remainMoney
+    func calculateRemainMoney(with totalAmount: Int) -> Int {
+        self.money - totalAmount
     }
     
     func printOrderList(of items: [Coffee]) {
