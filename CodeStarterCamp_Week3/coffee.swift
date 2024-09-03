@@ -8,13 +8,17 @@
 import Foundation
 
 class CoffeeShop {
-    var revenue: Int = 0
     var menu: [Coffee]
     var barista: Person
     var buyer: Person?
     var pickUpTable: [Coffee] = [] {
         didSet {
             printPickUpTable()
+        }
+    }
+    var revenue: Int = 0 {
+        didSet {
+            printRevenue()
         }
     }
     
@@ -31,8 +35,6 @@ class CoffeeShop {
         self.buyer = buyer
         self.pickUpTable = pickUpTable
         self.revenue += totalAmount
-        self.revenue += totalAmount
-        printRevenue()
     }
     
     func makeOrders(with coffees: [Coffee]) -> ([Coffee], Int)? {
@@ -76,16 +78,16 @@ enum Coffee: String {
     
     var price: Int {
         switch self {
-        case .iceAmericano:
-            return 2000
-        case .hotAmericano:
-            return 1500
-        case .iceChoco:
-            return 4500
-        case .hotChoco:
-            return 4000
-        case .milkTea:
-            return 5000
+            case .iceAmericano:
+                return 2000
+            case .hotAmericano:
+                return 1500
+            case .iceChoco:
+                return 4500
+            case .hotChoco:
+                return 4000
+            case .milkTea:
+                return 5000
         }
     }
 }

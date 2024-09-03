@@ -11,7 +11,7 @@ struct Person {
     var name: String
     var money: Int = 0 {
         didSet {
-            print("잔액이 \(self.money)원 남았습니다.")
+            printMoney()
         }
     }
     
@@ -58,5 +58,9 @@ struct Person {
     
     func calculateRemainMoney(with totalAmount: Int) -> Int {
         self.money - totalAmount
+    }
+    
+    func printMoney() {
+        print("잔액이 \(self.money)원 남았습니다.")
     }
 }
