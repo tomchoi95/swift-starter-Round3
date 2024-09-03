@@ -9,7 +9,7 @@ import Foundation
 
 class CoffeeShop {
     var revenue: Int = 0
-    var menu: [Coffee: Int]
+    var menu: [Coffee]
     var barista: Person
     var buyer: Person?
     var pickUpTable: [Coffee] = [] {
@@ -18,14 +18,13 @@ class CoffeeShop {
         }
     }
     
-    init(menu: [Coffee: Int], barista: Person) {
+    init(menu: [Coffee], barista: Person) {
         self.menu = menu
         self.barista = barista
     }
     
     func order(_ coffees: [Coffee], by buyer: Person) {
         guard let (pickUpTable, totalAmount): ([Coffee], Int) = makeOrders(with: coffees) else {
-            print("주문 정보가 올바르지 않습니다.")
             return
         }
         
@@ -41,12 +40,13 @@ class CoffeeShop {
         var totalAmount: Int = 0
         
         for coffee in coffees {
-            guard let price: Int = self.menu[coffee] else {
-                print("\(coffee)(은/는) 없는 품목입니다.")
+            guard self.menu.contains(coffee) else {
+                print("\(coffee.rawValue)(은/는) 없는 품목입니다.")
                 return nil
             }
+            
             pickUpTable.append(coffee)
-            totalAmount += price
+            totalAmount += coffee.price
         }
         
         return (pickUpTable, totalAmount)
@@ -73,4 +73,19 @@ enum Coffee: String {
     case iceChoco = "아이스초코"
     case hotChoco = "핫초코"
     case milkTea = "밀크티"
+    
+    var price: Int {
+        switch self {
+        case .iceAmericano:
+            return 2000
+        case .hotAmericano:
+            return 1500
+        case .iceChoco:
+            return 4500
+        case .hotChoco:
+            return 4000
+        case .milkTea:
+            return 5000
+        }
+    }
 }

@@ -42,16 +42,16 @@ struct Person {
     }
     
     func calculateTotalAmount(items: [Coffee], at shop: CoffeeShop) -> Int? {
-        let menu: [Coffee: Int] = shop.menu
+//        let menu: [Coffee] = shop.menu
         var totalAmount: Int = 0
-        
-        for item in items {
-            guard let price: Int = menu[item] else {
-                print("\(item.rawValue)(은/는) 없는 품목입니다.")
-                return nil
-            }
-            totalAmount += price
-        }
+//        
+//        for item in items {
+//            guard let price: Int = menu[item] else {
+//                print("\(item.rawValue)(은/는) 없는 품목입니다.")
+//                return nil
+//            }
+//            totalAmount += price
+//        }
         
         return totalAmount
     }
