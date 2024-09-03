@@ -35,7 +35,8 @@ class CoffeeShop {
             }
         } else {
             print("주문하신 메뉴가 없습니다.")
-            return }
+            return
+        }
     }
     
     func makeCoffee(customerNumber: Int) {
@@ -61,6 +62,19 @@ enum Coffee: String {
     case cafeMocha = "카페모카"
     case cafeLatte = "카페라떼"
     case vanilaLatte = "바닐라라떼"
+    
+    var price: Int {
+        switch self {
+        case .americano:
+            return 1500
+        case .cafeMocha:
+            return 4000
+        case .cafeLatte:
+            return 4000
+        case .vanilaLatte:
+            return 4500
+        }
+    }
 }
 
 var yagombucksMenu: [String: Int] = [Coffee.americano.rawValue: 1500,
