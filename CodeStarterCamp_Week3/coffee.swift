@@ -10,7 +10,7 @@ import Foundation
 class CoffeeShop {
     var menu: [Coffee]
     var barista: Person
-    var buyer: Person?
+    var buyer: Person!
     var pickUpTable: [Coffee] = [] {
         didSet {
             printPickUpTable()
@@ -55,13 +55,8 @@ class CoffeeShop {
     }
     
     func printPickUpTable() {
-        guard let buyerName: String = self.buyer?.name else {
-            print("주문자의 정보가 올바르지 않습니다.")
-            return
-        }
-        
         let pickUpTableJoined: String = self.pickUpTable.map{ $0.rawValue }.joined(separator: ", ")
-        print("\(buyerName) 님이 주문하신 \(pickUpTableJoined)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
+        print("\(self.buyer.name) 님이 주문하신 \(pickUpTableJoined)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
     }
     
     func printRevenue() {
