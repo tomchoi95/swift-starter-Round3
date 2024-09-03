@@ -8,20 +8,7 @@
 
 import Foundation
 
-yagombucks.getOrder(customer: missKim, order: "카페모카")
-yagombucks.makeCoffee(customerNumber: 0)
+var misterLee: Person = Person(name: "이철수", money: 1000)
+var missKim: Person = Person(name: "김미나", money: 10000)
 
-print("""
-
-pickUpTable: \(yagombucks.pickUpTable)
-매출액: \(yagombucks.sales)
-손님 잔액: \(missKim.money)
-
-""")
-
-yagombucks.giveCoffee(customer: missKim, customerNumber: 0)
-print("""
-
-pickUpTale: \(yagombucks.pickUpTable)
-customer.onHand: \(missKim.onHand)
-""")
+var yagombucks: CoffeeShop = CoffeeShop(menu: yagombucksMenu, barista: misterLee)

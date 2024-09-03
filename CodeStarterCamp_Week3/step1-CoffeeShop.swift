@@ -6,29 +6,6 @@
 //
 
 import Foundation
-
-class Person {
-    var name: String
-    var money = 0
-    var enoughMoney: Bool = true
-    var number: Int?
-    var onHand: [String] = []
-    
-    init(name: String, money: Int) {
-        self.name = name
-        self.money = money
-    }
-
-    func buyCoffee(priceCoffee: Int) {
-        guard money >= priceCoffee else {
-            return self.enoughMoney = false }
-        self.money = money - priceCoffee
-    }
-    
-    func getCoffee(receive: String) {
-        self.onHand.append(receive)
-    }
-}
     
 class CoffeeShop {
     var sales: Int = 0
@@ -91,7 +68,3 @@ var yagombucksMenu: [String: Int] = [Coffee.americano.rawValue: 1500,
                                      Coffee.cafeLatte.rawValue: 4000,
                                      Coffee.vanilaLatte.rawValue: 4500]
 
-var misterLee: Person = Person(name: "이철수", money: 1000)
-var missKim: Person = Person(name: "김미나", money: 10000)
-
-var yagombucks: CoffeeShop = CoffeeShop(menu: yagombucksMenu, barista: misterLee)
