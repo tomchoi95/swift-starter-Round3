@@ -9,7 +9,7 @@ import Foundation
 
 class Person {
     var name: String
-    var money: Int?
+    var money: Int = 0
     
     init(name: String, money: Int) {
         self.name = name
@@ -21,8 +21,8 @@ class Person {
     }
     
     func order(coffeeShop: CoffeeShop, coffee: Coffee) {
-        if let price = coffeeShop.menu[coffee], money! >= price {
-            money! -= price
+        if let price = coffeeShop.menu[coffee], money >= price {
+            money -= price
             print("\(name)님이 \(coffee.rawValue)를 주문했습니다.")
             coffeeShop.takeOrder(coffee: coffee)
         } else {

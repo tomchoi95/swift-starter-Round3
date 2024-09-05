@@ -11,9 +11,9 @@ class CoffeeShop {
     var revenue: Int = 0
     var menu: [Coffee : Int]
     var pickupTable: [Coffee] = []
-    var barista: String
+    var barista: Person
     
-    init(menu: [Coffee : Int], barista: String) {
+    init(menu: [Coffee : Int], barista: Person) {
         self.menu = menu
         self.barista = barista
     }
@@ -28,16 +28,19 @@ class CoffeeShop {
     }
     
     private func make(coffee: Coffee) {
-        if barista == barista {
-            print("\(barista)가 \(coffee.rawValue)를 만들고 있습니다.")
-        } else {
-            print("바리스타가 없어서 \(coffee.rawValue)를 만들 수 없습니다.")
-        }
-        
+        print("\(barista.name)가 \(coffee.rawValue)를 만들고 있습니다.")
         pickupTable.append(coffee)
         print("\(coffee.rawValue)가 준비되었습니다!")
     }
     
 }
 
-var yagombuks: CoffeeShop = CoffeeShop(menu: [.americano: 4500, .iceAmericano: 5000], barista: "mister Lee")
+var yagombuks: CoffeeShop = CoffeeShop(
+    menu: [
+        .americano: 4500,
+        .iceAmericano: 5000,
+        .espresso: 4500,
+        .latte: 6000,
+        .cappuccino: 6500
+    ],
+    barista: misterLee)
