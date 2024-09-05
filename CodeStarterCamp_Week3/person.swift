@@ -9,8 +9,12 @@ import Foundation
 
 struct Person {
     var name: String
-    var money: Int = 0
-
+    var money: Int = 0 {
+        didSet {
+            printMoney()
+        }
+    }
+    
     init(name: String, money: Int) {
         self.name = name
         self.money = money
@@ -19,48 +23,44 @@ struct Person {
     init(name: String) {
         self.name = name
     }
-
+    
     mutating func buyCoffee(_ coffees: [Coffee], shop: CoffeeShop) {
-        guard let totalAmount: Int = calculateTotalAmount(items: coffees, at: shop) else {
-            print("\(name)이(가) 구매를 종료합니다.")
+        guard let totalAmount: Int = calculateTotalAmount(coffees, at: shop) else {
+            print("가게에 없는 메뉴입니다.")
             return
         }
-        guard let remainMoney: Int = calculateRemainMoney(with: totalAmount) else {
-            print("\(name)의 돈이 부족합니다. 현재 남은 돈은 \(self.money)원 입니다.")
+        
+        let remainingMoney: Int = calculateRemainingMoney(with: totalAmount)
+        
+        guard remainingMoney >= 0 else {
+            print("\(self.name)의 잔액이 \(-remainingMoney)원만큼 부족합니다.")
             return
         }
-
-        self.money = remainMoney
-        printOrderList(of: coffees)
+        
+        shop.order(coffees, by: self)
+        self.money = remainingMoney
     }
-
-    func calculateTotalAmount(items: [Coffee], at shop: CoffeeShop) -> Int? {
-        let menu: [Coffee: Int] = shop.menu
+    
+    func calculateTotalAmount(_ coffees: [Coffee], at shop: CoffeeShop) -> Int? {
         var totalAmount: Int = 0
         
-        for item in items {
-            guard let price: Int = menu[item] else {
-                print("\(item.rawValue)은(는) 없는 품목입니다.")
+        for coffee in coffees {
+            guard shop.menu.contains(coffee) else {
+                print("\(coffee.rawValue)(은/는) 없는 품목입니다.")
                 return nil
             }
-            totalAmount += price
+            
+            totalAmount += coffee.price
         }
         
         return totalAmount
     }
-
-    func calculateRemainMoney(with totalAmount: Int) -> Int? {
-        let remainMoney: Int = self.money - totalAmount
-        
-        guard remainMoney >= 0 else {
-            return nil
-        }
-        
-        return remainMoney
+    
+    func calculateRemainingMoney(with totalAmount: Int) -> Int {
+        self.money - totalAmount
     }
-
-    func printOrderList(of items: [Coffee]) {
-        let orderListJoined: String = items.map{ $0.rawValue }.joined(separator: ", ")
-        print("\(name)이(가) \(orderListJoined)을(를) 구매하였습니다. 현재 남은 돈은 \(self.money)원 입니다.")
+    
+    func printMoney() {
+        print("\(self.name)의 잔액이 \(self.money)원 남았습니다.")
     }
 }

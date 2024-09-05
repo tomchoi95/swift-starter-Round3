@@ -10,14 +10,5 @@ import Foundation
 
 var misterLee: Person = Person(name: "이야곰")
 var missKim: Person = Person(name: "김야곰", money: 20000)
-
-let yagombucksMenu: [Coffee: Int] = [.iceAmericano: 2000,.hotChoco: 4500]
-var yagombucks: CoffeeShop = CoffeeShop(menu: yagombucksMenu, barista: misterLee)
-
-let orderList: [Coffee] = [.iceAmericano, .hotChoco]
-missKim.buyCoffee(orderList, shop: yagombucks)
-yagombucks.order(coffees: orderList)
-
-// let orderList: [Coffee] = [.iceAmericano, .hotChoco, .milkTea]
-// missKim.buyCoffee(items: orderList, shop: yagombucks)
-// yagombucks.order(items: orderList)
+var yagombucks: CoffeeShop = CoffeeShop(menu: [.iceAmericano, .hotChoco, .milkTea], barista: misterLee)
+missKim.buyCoffee([.iceAmericano, .hotChoco], shop: yagombucks)
