@@ -73,16 +73,16 @@ enum Coffee: String {
     
     var price: Int {
         switch self {
-            case .iceAmericano:
-                return 2000
-            case .hotAmericano:
-                return 1500
-            case .iceChoco:
-                return 4500
-            case .hotChoco:
-                return 4000
-            case .milkTea:
-                return 5000
+        case .iceAmericano:
+            return 2000
+        case .hotAmericano:
+            return 1500
+        case .iceChoco:
+            return 4500
+        case .hotChoco:
+            return 4000
+        case .milkTea:
+            return 5000
         }
     }
 }
