@@ -20,13 +20,14 @@ class Person {
         self.name = name
     }
     
-    func order(coffeeShop: CoffeeShop, coffee: Coffee) {
+    func order(_ coffeeShop: CoffeeShop, of coffee: Coffee, by name: String) {
         if let price = coffeeShop.menu[coffee], money >= price {
             money -= price
             print("\(name)님이 \(coffee.rawValue)를 주문했습니다.")
-            coffeeShop.takeOrder(coffee: coffee)
-        } else {
-            print("\(coffee.rawValue)를 구매할 돈이 부족합니다.")
+            coffeeShop.takeOrder(coffee: coffee, name: name)
+        } else if var price = coffeeShop.menu[coffee], money < price {
+            price -= money
+            print("잔액이 \(price)원만큼 부족합니다.")
         }
         
     }
