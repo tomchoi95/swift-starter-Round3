@@ -78,8 +78,8 @@ enum Coffee: String {
     }
 }
 
-var yagombucksMenu: [Coffee: Int] = [Coffee.americano: Coffee.americano.price,
-                                     Coffee.cafeMocha: Coffee.cafeMocha.price,
-                                     Coffee.cafeLatte: Coffee.cafeMocha.price,
-                                     Coffee.vanilaLatte: Coffee.vanilaLatte.price]
+var yagombucksMenu: [Coffee: Int] = [.americano: Coffee.americano.price,
+                                     .cafeMocha: Coffee.cafeMocha.price,
+                                     .cafeLatte: Coffee.cafeMocha.price,
+                                     .vanilaLatte: Coffee.vanilaLatte.price]
 
