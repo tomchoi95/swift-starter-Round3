@@ -10,9 +10,9 @@ import Foundation
 class CoffeeShop {
     var sales: Int = 0
     var menu = [Coffee: Int]()
-    var pickUpTable: [String] = []
+    var pickUpTable: [Coffee]? = []
     var barista: Person
-    var standBy: [String] = []
+    var standBy: [Coffee] = []
     var customerNumber = 0
     
     init(menu: [Coffee: Int], barista: Person) {
@@ -20,15 +20,15 @@ class CoffeeShop {
         self.barista = barista
     }
     
-    func getOrder(of customer: Person, order: String) {
-        if let menuKey = Coffee(rawValue: order) {
+    func getOrder(of customer: Person, coffeeOrder: String) {
+        if let menuKey = Coffee(rawValue: coffeeOrder) {
             if let price = menu[menuKey] {
-                print("주문하신 \(order)는(은) \(price)원 입니다.")
+                print("주문하신 \(coffeeOrder)는(은) \(price)원 입니다.")
                 customer.buy(price: price)
                 if customer.enoughMoney == true {
                     customer.waitingNumber = self.customerNumber
                     print("\(price)원 받았습니다. 완료되면 \(customerNumber)번 으로 불러드릴게요.")
-                    self.standBy.insert(order, at: customerNumber)
+                    self.standBy.insert(menuKey, at: customerNumber)
                     self.sales += price
                     self.customerNumber += 1
                 } else {
@@ -41,21 +41,25 @@ class CoffeeShop {
         }
     }
     func makeCoffee(of customerNumber: Int) {
-        pickUpTable.insert(standBy[customerNumber], at: customerNumber)
-        let bell = pickUpTable.joined()
-        print("\(customerNumber)번 손님, 주문하신 \(bell) 나왔습니다!")
-    }
-    
-    func giveCoffee(to customerNumber: Int, customer: Person) {
-        if customerNumber == customer.waitingNumber {
-            if pickUpTable[customerNumber].isEmpty == true {
-                print("이미 픽업 하셨습니다.")
-            }
-            customer.get(coffee: pickUpTable[customerNumber])
-            print("감사합니다. 맛있게 드세요~")
-            pickUpTable.remove(at: customerNumber)
+        self.pickUpTable?.insert(standBy[customerNumber], at: customerNumber)
+        if let pickUpTable = pickUpTable?[customerNumber] {
+            let bell = pickUpTable.rawValue
+            print("\(customerNumber)번 손님, 주문하신 \(bell) 나왔습니다!")
         }
     }
+    func giveCoffee(to customerNumber: Int, customer: Person) {
+        guard customerNumber == customer.waitingNumber else {
+            print("고객 번호가 다릅니다.")
+            return
+        }
+        guard let pickUp = pickUpTable?[customerNumber] else {
+            print("이미 픽업 하셨습니다.")
+            return
+            }
+        customer.get(coffee: pickUp.rawValue)
+        print("감사합니다. 맛있게 드세요~")
+        self.pickUpTable?.remove(at: customerNumber)
+        }
 }
 
 enum Coffee: String {
