@@ -61,6 +61,6 @@ struct Person {
     }
     
     func printMoney() {
-        print("잔액이 \(self.money)원 남았습니다.")
+        print("\(self.name)의 잔액이 \(self.money)원 남았습니다.")
     }
 }
