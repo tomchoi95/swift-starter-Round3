@@ -25,7 +25,7 @@ struct Person {
     }
     
     mutating func buyCoffee(_ coffees: [Coffee], shop: CoffeeShop) {
-        guard let totalAmount: Int = calculateTotalAmount(items: coffees, at: shop) else {
+        guard let totalAmount: Int = calculateTotalAmount(coffees, at: shop) else {
             print("가게에 없는 메뉴입니다.")
             return
         }
@@ -41,16 +41,16 @@ struct Person {
         self.money = remainMoney
     }
     
-    func calculateTotalAmount(items: [Coffee], at shop: CoffeeShop) -> Int? {
+    func calculateTotalAmount(_ coffees: [Coffee], at shop: CoffeeShop) -> Int? {
         var totalAmount: Int = 0
         
-        for item in items {
-            guard shop.menu.contains(item) else {
-                print("\(item.rawValue)(은/는) 없는 품목입니다.")
+        for coffee in coffees {
+            guard shop.menu.contains(coffee) else {
+                print("\(coffee.rawValue)(은/는) 없는 품목입니다.")
                 return nil
             }
             
-            totalAmount += item.price
+            totalAmount += coffee.price
         }
         
         return totalAmount
