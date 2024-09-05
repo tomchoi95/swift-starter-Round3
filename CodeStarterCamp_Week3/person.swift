@@ -30,15 +30,15 @@ struct Person {
             return
         }
         
-        let remainMoney: Int = calculateRemainMoney(with: totalAmount)
+        let remainingMoney: Int = calculateRemainingMoney(with: totalAmount)
         
-        guard remainMoney >= 0 else {
-            print("\(self.name)의 잔액이 \(-remainMoney)원만큼 부족합니다.")
+        guard remainingMoney >= 0 else {
+            print("\(self.name)의 잔액이 \(-remainingMoney)원만큼 부족합니다.")
             return
         }
         
         shop.order(coffees, by: self)
-        self.money = remainMoney
+        self.money = remainingMoney
     }
     
     func calculateTotalAmount(_ coffees: [Coffee], at shop: CoffeeShop) -> Int? {
@@ -56,7 +56,7 @@ struct Person {
         return totalAmount
     }
     
-    func calculateRemainMoney(with totalAmount: Int) -> Int {
+    func calculateRemainingMoney(with totalAmount: Int) -> Int {
         self.money - totalAmount
     }
     
