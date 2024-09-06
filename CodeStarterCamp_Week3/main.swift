@@ -8,4 +8,4 @@
 
 import Foundation
 
-missKim.order(coffeeShop: yagombuks, coffee: .iceAmericano)
+missKim.order(yagombuks, of: .iceAmericano, by: "miss Kim")

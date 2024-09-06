@@ -18,19 +18,19 @@ class CoffeeShop {
         self.barista = barista
     }
     
-    func takeOrder(coffee: Coffee) {
+    func takeOrder(coffee: Coffee, name: String) {
         if let price = menu[coffee] {
             revenue += price
-            make(coffee: coffee)
+            make(_: coffee, from: name)
         } else {
             print("죄송합니다. \(coffee.rawValue)는 없는 메뉴입니다.")
         }
     }
     
-    private func make(coffee: Coffee) {
+    private func make(_ coffee: Coffee, from name: String) {
         print("\(barista.name)가 \(coffee.rawValue)를 만들고 있습니다.")
         pickupTable.append(coffee)
-        print("\(coffee.rawValue)가 준비되었습니다!")
+        print("\(name) 님이 주문하신 \(coffee.rawValue)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
     }
     
 }
