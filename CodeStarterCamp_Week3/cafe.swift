@@ -15,13 +15,13 @@ struct Person {
 
 struct CoffeeShop {
     var sales: Int = 0
-    let menu: [String:Int] = ["아메리카노":3000,"카페라떼":3500,"카푸치노":3500]
+    let menu: [Coffee:Int] = [.americano:3000,.cafeLatte:3500,.cappuccino:3500,.espresso:3000,.latteMacchiato:3500]
     var pickUpTable: [(String,String)] = []
     var orderList: [(String,String)] = []
     
-    mutating func takeOrder(_ coffee: String, from person: String) {
-        orderList.append((person,coffee))
-        print("\(person)님이 \(coffee) 주문")
+    mutating func takeOrder(_ coffee: Coffee, from person: String) {
+        orderList.append((person,coffee.rawValue))
+        print("\(person)님이 \(coffee.rawValue) 주문")
     }
     mutating func makeCoffee() {
         if let brewingCustomerCoffee = orderList.first?.0, let brewingCoffee = orderList.first?.1 {
@@ -31,4 +31,12 @@ struct CoffeeShop {
             print("주문 내역이 없습니다.")
         }
     }
+}
+
+enum Coffee :String {
+    case americano = "아메리카노"
+    case cafeLatte = "카페라떼"
+    case cappuccino = "카푸치노"
+    case espresso = "에스프레소"
+    case latteMacchiato = "라떼마끼아또"
 }
