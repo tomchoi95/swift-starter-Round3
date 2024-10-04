@@ -7,3 +7,6 @@
 //
 
 import Foundation
+
+var misterLee: Person = Person(name: "이문세")
+var missKim: Person = Person(name: "김광석")
