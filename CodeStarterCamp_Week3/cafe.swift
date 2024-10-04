@@ -23,6 +23,7 @@ struct CoffeeShop {
     let menu: [Coffee:Int] = [.americano:3000,.cafeLatte:3500,.cappuccino:3500,.espresso:3000,.latteMacchiato:3500]
     var pickUpTable: [(String,String)] = []
     var orderList: [(String,String)] = []
+    var baristas: [Person] = []
     
     mutating func takeOrder(_ coffee: Coffee, from person: Person) {
         orderList.append((person.name,coffee.rawValue))
@@ -35,6 +36,9 @@ struct CoffeeShop {
         } else {
             print("주문 내역이 없습니다.")
         }
+    }
+    mutating func hireBarista(_ barista: Person) {
+        baristas.append(barista)
     }
 }
 
