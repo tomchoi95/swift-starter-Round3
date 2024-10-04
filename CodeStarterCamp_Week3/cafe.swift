@@ -7,6 +7,11 @@
 
 struct Person {
     var money: Int = 0
+    let name : String
+    
+    init(name: String) {
+        self.name = name
+    }
     
     func buyCoffee() {
         print("커피 구입")
@@ -19,9 +24,9 @@ struct CoffeeShop {
     var pickUpTable: [(String,String)] = []
     var orderList: [(String,String)] = []
     
-    mutating func takeOrder(_ coffee: Coffee, from person: String) {
-        orderList.append((person,coffee.rawValue))
-        print("\(person)님이 \(coffee.rawValue) 주문")
+    mutating func takeOrder(_ coffee: Coffee, from person: Person) {
+        orderList.append((person.name,coffee.rawValue))
+        print("\(person.name)님이 \(coffee.rawValue) 주문")
     }
     mutating func makeCoffee() {
         if let brewingCustomerCoffee = orderList.first?.0, let brewingCoffee = orderList.first?.1 {
