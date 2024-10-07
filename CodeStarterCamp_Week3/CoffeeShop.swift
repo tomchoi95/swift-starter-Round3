@@ -5,24 +5,11 @@
 //  Created by 최범수 on 2024-10-03.
 //
 
-struct Person {
-    var money: Int = 0
-    let name : String
-    
-    init(name: String) {
-        self.name = name
-    }
-    
-    func buyCoffee() {
-        print("커피 구입")
-    }
-}
-
 struct CoffeeShop {
     var sales: Int = 0
-    let menu: [Coffee:Int] = [.americano:3000,.cafeLatte:3500,.cappuccino:3500,.espresso:3000,.latteMacchiato:3500]
-    var pickUpTable: [(String,String)] = []
-    var orderList: [(String,String)] = []
+    var menu: [Coffee:Int] = [.americano:3000, .cafeLatte:3500, .cappuccino:3500, .espresso:3000, .latteMacchiato:3500]
+    var pickUpTable: [(String, String)] = []
+    var orderList: [(String, String)] = []
     var baristas: [Person] = []
     
     mutating func takeOrder(_ coffee: Coffee, from person: Person) {
@@ -40,12 +27,4 @@ struct CoffeeShop {
     mutating func hireBarista(_ barista: Person) {
         baristas.append(barista)
     }
-}
-
-enum Coffee :String {
-    case americano = "아메리카노"
-    case cafeLatte = "카페라떼"
-    case cappuccino = "카푸치노"
-    case espresso = "에스프레소"
-    case latteMacchiato = "라떼마끼아또"
 }
