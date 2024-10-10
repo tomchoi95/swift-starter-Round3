@@ -8,10 +8,14 @@
 
 import Foundation
 
-var misterLee: Person = Person(name: "이문세", money: 100000)
-var missKim: Person = Person(name: "김광석", money: 150000)
 
-var yagombucks: CoffeeShop = CoffeeShop()
+var tom: Person = Person(name: "Tom",money: 50000)
+var jerry: Person = Person(name: "Jerry",money: 100000)
+var mike: Person = Person(name: "Mike",money: 200000)
+var jane: Person = Person(name: "Jane",money: 300000)
 
+var starbucks: CoffeeShop = CoffeeShop(menu: [.americano: 1000, .latteMacchiato: 1500, .cappuccino: 2000], barista: tom)
 
-yagombucks.hireBarista(missKim)
+jerry.placeOrder(.espresso, at: starbucks)
+jerry.placeOrder(.americano, at: starbucks)
+starbucks.makeOrder()

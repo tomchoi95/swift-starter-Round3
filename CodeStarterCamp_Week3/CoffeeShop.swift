@@ -5,26 +5,35 @@
 //  Created by 최범수 on 2024-10-03.
 //
 
-struct CoffeeShop {
+class CoffeeShop {
     var sales: Int = 0
-    var menu: [Coffee:Int] = [.americano:3000, .cafeLatte:3500, .cappuccino:3500, .espresso:3000, .latteMacchiato:3500]
-    var pickUpTable: [(String, String)] = []
-    var orderList: [(String, String)] = []
-    var baristas: [Person] = []
+    var orderList: [(Coffee, String)] = []
+    var pickUpTable: [(Coffee, String)] = []
+    var barista: Person
+    let menu: [Coffee: Int]
     
-    mutating func takeOrder(_ coffee: Coffee, from person: Person) {
-        orderList.append((person.name,coffee.rawValue))
-        print("\(person.name)님이 \(coffee.rawValue) 주문")
+    init(menu : [Coffee: Int], barista: Person) {
+        self.barista = barista
+        self.menu = menu
     }
-    mutating func makeCoffee() {
-        if let brewingCustomerCoffee = orderList.first?.0, let brewingCoffee = orderList.first?.1 {
-            pickUpTable.append(orderList.removeFirst())
-            print("\(brewingCustomerCoffee)님의 \(brewingCoffee) 준비 완료")
+
+    func takeOrder(_ order: Coffee, by customer: Person) {
+        if let price = menu[order] {
+            print("\(customer.name)님의 \(order.rawValue) 주문을 받았습니다!")
+            orderList.append((order, customer.name))
+            customer.money -= price
         } else {
-            print("주문 내역이 없습니다.")
+            print("우리집에 그런거 안팔아요")
         }
     }
-    mutating func hireBarista(_ barista: Person) {
-        baristas.append(barista)
+    
+    func makeOrder() {
+        if let brewingOrder: (Coffee, String) = orderList.first {
+            self.pickUpTable.append(brewingOrder)
+            orderList.remove(at: 0)
+            print("\(brewingOrder.1)님 주문하신 \(brewingOrder.0.rawValue) 나왔습니다.")
+        } else {
+            print("만들고 싶어도 오더가 없음")
+        }
     }
 }

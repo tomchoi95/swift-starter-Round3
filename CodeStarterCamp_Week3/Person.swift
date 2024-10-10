@@ -6,15 +6,15 @@
 //
 
 class Person {
+    let name: String
     var money: Int
-    let name : String
-    
+
     init(name: String, money: Int) {
         self.name = name
         self.money = money
     }
     
-    func buyCoffee(at coffeeShop: CoffeeShop) {
-        print("커피 구입")
+    func placeOrder (_ coffee: Coffee, at cafe: CoffeeShop) {
+        cafe.takeOrder(coffee, by: self)
     }
 }
