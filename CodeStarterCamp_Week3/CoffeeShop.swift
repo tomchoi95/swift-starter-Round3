@@ -20,7 +20,7 @@ class CoffeeShop {
     func takeOrder(_ order: Coffee, by customer: Person) {
         if let price = menu[order] {
             if customer.money >= price {
-                print("\(customer.name) 님의 \(order.rawValue) 주문을 받았습니다!")
+                print("\(customer.name) 님의 \(order.name) 주문을 받았습니다!")
                 orderList.append((order, customer.name))
                 customer.money -= price
                 sales += price
@@ -36,7 +36,7 @@ class CoffeeShop {
         if let brewingOrder: (Coffee, String) = orderList.first {
             self.pickUpTable.append(brewingOrder)
             orderList.remove(at: 0)
-            print("\(brewingOrder.1) 님이 주문하신 \(brewingOrder.0.rawValue)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
+            print("\(brewingOrder.1) 님이 주문하신 \(brewingOrder.0.name)(이/가) 준비되었습니다. 픽업대에서 가져가주세요.")
         }
     }
 }
