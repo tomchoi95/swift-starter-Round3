@@ -20,6 +20,6 @@ let yagombucks: CoffeeShop = CoffeeShop(menu: [.americano: 1000,
                                               .cappuccino: 2000],
                                        barista: tom)
 
-jerry.order(.espresso, of: yagombucks)
-jerry.order(.americano, of: yagombucks)
-missKim.order(.cappuccino, of: yagombucks)
+jerry.order(.espresso, of: yagombucks, by: jerry.name)
+jerry.order(.americano, of: yagombucks, by: jerry.name)
+missKim.order(.cappuccino, of: yagombucks, by: missKim.name)
